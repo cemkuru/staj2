@@ -1,0 +1,42 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobListViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<form asp-area="User" asp-controller="User" asp-action="JobIndex" method="get">
+    <p>
+        Title: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<div>
+
+    <table class="table table-bordered ">
+        <thead class="thead-dark">
+            <tr>
+                <td scope="col">Post</td>
+                <td scope="col">Area</td>
+                <td scope="col"></td>
+            </tr>
+        </thead>
+
+        @foreach (var job in Model.Jobs)
+        {
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => job.PostTitle)</td>
+                    <td><a asp-action="Details" asp-route-id="@job.JobID">@job.Area</a> </td>
+                    <td><a class="btn btn-xs btn-success" asp-area="User" asp-controller="JobForm" asp-action="AddJobForm">Apply</a></td>
+
+
+                </tr>
+            </tbody>
+
+        }
+    </table>
+
+</div>

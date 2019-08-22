@@ -1,0 +1,39 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.AnnouncementViewModel
+
+
+@{
+    ViewData["Title"] = "Detial";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<h1></h1>
+
+<div>
+    <h4> @Html.DisplayFor(model => model.Announcement.ATitle)</h4>
+    <hr />
+    <dl class="row">
+        @*<dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Announcement.ATitle)
+        </dt>*@
+        @*<dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Announcement.ATitle)
+        </dd>*@
+        @*<dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Announcement.ADescription)
+        </dt>*@
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Announcement.ACreateDate)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Announcement.ADescription)
+        </dd>
+        @*<dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Announcement.ACreateDate)
+        </dt>*@
+
+    </dl>
+</div>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.Announcement.AnnouncementId">Edit</a> |*@
+    <a asp-area="" asp-controller="User" asp-action="Index">Back to List</a>
+</div>

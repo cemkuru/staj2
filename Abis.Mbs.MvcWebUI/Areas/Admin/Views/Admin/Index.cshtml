@@ -1,0 +1,38 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.AnnouncementListViewModel
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<h2>Announcements</h2>
+
+<a class="btn btn-xs btn-success" asp-area="Admin" asp-controller="Admin" asp-action="Add">@*@Localize("AddAnnouncement")*@Add a new announcement</a>
+<div>
+    <table class="table table-responsive">
+        <tr>
+            <td>Title</td>
+            <td>Description</td>
+            <td>Date</td>
+            <td>photo</td>
+
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var announcement in Model.Announcements)
+        {
+            <tr>
+                <td>@announcement.ATitle</td>
+                <td>@announcement.ADescription</td>
+                <td>@Html.DisplayFor(modelItem => announcement.ACreateDate)</td>
+
+
+
+                @*<td><img src="@Url.Content(announcement.APhoto)" width="250" height="250"/> </td>*@
+
+                <td><a class="btn btn-xs btn-info" asp-area="Admin" asp-controller="Admin" asp-action="Update" asp-route-announcementId="@announcement.AnnouncementId">Update</a></td>
+                <td><a class="btn btn-xs btn-danger" asp-area="Admin" asp-controller="Admin" asp-action="Delete" asp-route-announcementId="@announcement.AnnouncementId">Delete</a></td>
+            </tr>
+        }
+    </table>
+
+</div>

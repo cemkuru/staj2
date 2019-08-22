@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abis.Mbs.DataAccess\Abis.Mbs.DataAccess.csproj" />
+    <ProjectReference Include="..\Abis.Mbs.Entities\Abis.Mbs.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

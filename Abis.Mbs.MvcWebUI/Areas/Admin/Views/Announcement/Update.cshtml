@@ -1,0 +1,31 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.Admin.Models.AnnouncementUpdateViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<h2>Update Announcement</h2>
+
+<form asp-controller="Announcement" asp-area="Admin" asp-action="Update" method="post">
+    <div class="form-group">
+        <label asp-for="Announcement.ATitle"></label>
+        <input asp-for="Announcement.ATitle" class="form-control" placeholder="Announcement Title" />
+        <span asp-validation-for="Announcement.ATitle"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Announcement.ADescription"></label>
+        <input asp-for="Announcement.ADescription" class="form-control" placeholder="Description" />
+        <span asp-validation-for="Announcement.ADescription"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Announcement.ACreateDate" class="control-label"></label>
+        <input asp-for="Announcement.ACreateDate" class="form-control" />
+        <span asp-validation-for="Announcement.ACreateDate" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="Announcement.AnnouncementId" />
+    <input type="submit" value="Update" class="btn btn-xs btn-success" />
+
+</form>

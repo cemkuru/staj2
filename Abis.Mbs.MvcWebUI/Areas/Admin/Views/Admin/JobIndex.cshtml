@@ -1,0 +1,42 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobListViewModel
+@{
+    ViewData["Title"] = "JobIndex";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<h1>JobIndex</h1>
+
+<a class="btn btn-xs btn-success" asp-area="Admin" asp-controller="Admin" asp-action="AddJob">Add a new Job</a>
+<div>
+
+    @if (TempData["addjobmessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["success"];</div>
+    }
+    <table class="table table-bordered table-responsive ">
+        <thead class="thead-dark">
+            <tr>
+                <td scope="col">Post</td>
+                <td scope="col">Area</td>
+                <td scope="col">Country</td>
+                <td scope="col">City</td>
+
+                <td>Update</td>
+                <td> Delete</td>
+            </tr>
+        </thead>
+        @foreach (var job in Model.Jobs)
+        {
+            <tbody>
+                <tr>
+                    <td>@job.PostTitle</td>
+                    <td>@job.Area</td>
+                    <td>@job.Country</td>
+                    <td>@job.City</td>
+                    <td><a class="btn btn-xs btn-info" asp-area="Admin" asp-controller="Admin" asp-action="UpdateJob" asp-route-JobID="@job.JobID">Update</a></td>
+                    <td><a class="btn btn-xs btn-danger" asp-area="Admin" asp-controller="Admin" asp-action="DeleteJob" asp-route-JobID="@job.JobID">Delete</a></td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>

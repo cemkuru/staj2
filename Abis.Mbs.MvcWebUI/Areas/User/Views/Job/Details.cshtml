@@ -1,0 +1,24 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobViewModel
+
+@{
+    ViewData["Title"] = "JobDetails";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<h1>JobDetails</h1>
+
+<div>
+    <h4> @Html.DisplayFor(model => model.Job.PostTitle)</h4>
+    <hr />
+    <dl class="row">
+       
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.Area)
+        </dd>
+        
+
+    </dl>
+</div>
+<div>
+    <a asp-area="User" asp-controller="Job" asp-action="Index">Back to List</a>
+</div>

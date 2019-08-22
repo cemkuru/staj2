@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/node_modules/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="/node_modules/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+
+</head>
+<body>
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/mezun_icon.png" style="width:60px; background-color:white;" />
+
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    @*<partial name="_LoginPartial" />*@
+                   
+                        <ul class="navbar-nav flex-grow-1">
+
+                            <!-- Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                    Giriş
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="Index">Home</a>
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="Contact">Contact</a>
+                                    <a class="dropdown-item" asp-controller="ShortAnnouncement" asp-action="Index">Announcement</a>
+
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="ShortAnnouncement" asp-action="Index">Announcement</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" style="text-align:right!important;" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+
+                        </ul>
+                </div>
+            </div>
+
+
+            <form class="navbar-form navbar-left" action="/action_page.php">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="search">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-danger">Submit</button>
+
+                    </div>
+                </div>
+            </form>
+
+
+        </nav>
+
+    </header>
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <div class="col-lg-12">
+        @RenderBody()
+    </div>
+
+    <!--Footer-->
+    <footer class="page-footer font-small mdb-color darken-3 pt-4 " style="background-color:#bf1f1f ;!important;">
+
+
+        <div class="container" style="color:white ">
+
+            <!--Grid row-->
+            <div class="row d-flex justify-content-center">
+
+                <!--Grid column-->
+                <div class="col-md-6">
+
+                    <!-- Video -->
+                    <div class="embed-responsive embed-responsive-16by9 mb-4">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/59r2bvhVebI"
+                                allowfullscreen></iframe>
+                    </div>
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+            <div class="footer-copyright text-center py-3" style="background-color:#bf1f1f!important">
+                &copy; 2019 - WebApp1 - <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color:white">Privacy</a>
+            </div>
+
+        </div>
+        <!-- Footer Elements -->
+        <!-- Copyright -->
+
+    </footer>
+
+
+
+    @*<div class="col-md-12">Footer</div>*@
+
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

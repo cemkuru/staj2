@@ -1,0 +1,33 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.Admin.Models.JobAddViewModel
+@{
+    ViewData["Title"] = "AddJob";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<h1>AddJob</h1>
+
+<form asp-area="" asp-controller="Job" asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="Job.PostTitle"></label>
+        <input asp-for="Job.PostTitle" class="form-control" placeholder="Post " />
+        <span asp-validation-for="Job.PostTitle"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Job.Area"></label>
+        <input asp-for="Job.Area" class="form-control" placeholder="Area" />
+        <span asp-validation-for="Job.Area"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Job.Country"></label>
+        <input asp-for="Job.Country" class="form-control" placeholder="Country" />
+        <span asp-validation-for="Job.Country"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Job.City"></label>
+        <input asp-for="Job.City" class="form-control" placeholder="City"/>
+        <span asp-validation-for="Job.City"></span>
+    </div>
+
+    <input type="submit" value="Add" class="btn btn-xs btn-success" />
+
+</form>

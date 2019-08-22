@@ -1,0 +1,39 @@
+﻿@using System.Threading.Tasks
+@using Abis.Mbs.MvcWebUI.Models
+@model Abis.Mbs.MvcWebUI.Areas.Admin.Models.AnnouncementAddViewModel
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<h1>Add a announcement</h1>
+
+<form asp-area="Admin" asp-controller="Admin"  asp-action="Add" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Announcement.ATitle"></label>
+        <input asp-for="Announcement.ATitle" class="form-control" placeholder="Announcement Title" />
+        <span asp-validation-for="Announcement.ATitle"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Announcement.ADescription"></label>
+        <input asp-for="Announcement.ADescription" class="form-control" placeholder="Announcement Description" />
+        <span asp-validation-for="Announcement.ADescription"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Announcement.ACreateDate" class="control-label"></label>
+        <input asp-for="Announcement.ACreateDate" class="form-control" />
+        <span asp-validation-for="Announcement.ACreateDate" class="text-danger"></span>
+    </div>
+    @*<div class="form-group">
+       @Html.LabelFor(model=>model.Announcement.APhoto,htmlAttributes:new { @class="control-label col-md-2"})
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Announcement.APhoto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Announcement.APhoto, "", new { @class = "text-danger" })
+            <input type="file" id="image1" name="image1" />
+        </div>
+       
+    </div>*@
+
+    <input type="submit" value="Add" class="btn btn-xs btn-success" />
+
+</form>

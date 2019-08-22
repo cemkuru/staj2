@@ -1,0 +1,28 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.AnnouncementListViewModel
+@{
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<div>
+    <table class="table table-responsive">
+        <tr>
+            <td>Date</td>
+            <td>Title</td>
+        </tr>
+        @foreach (var announcement in Model.Announcements)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => announcement.ACreateDate)</td>
+                <td><a asp-area="User" asp-controller="Announcement" asp-action="Detial" asp-route-id="@announcement.AnnouncementId">@announcement.ATitle</a> </td>
+                @*<td>@Html.DisplayFor(modelItem => announcement.ATitle)</td>*@
+
+                @*<td><a class="" asp-controller="Admin" asp-action="Update" asp-route-announcementId="@announcement.AnnouncementId">Update</a></td>*@
+                @*<td><li><a href="@Html.ActionLink("/Detail/id/" + announcement.AnnouncementId, "Announcement")"> Bilgi  </a> </li></td>*@
+                @*<td>@announcement.ADescription</td>*@
+
+
+            </tr>
+
+        }
+    </table>
+</div>

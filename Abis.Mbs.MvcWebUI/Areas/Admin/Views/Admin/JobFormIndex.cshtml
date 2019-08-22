@@ -1,0 +1,43 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobFormListViewModel
+@{
+    ViewData["Title"] = "JobFormIndex";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<h1>JobFormIndex</h1>
+
+<div>
+
+</div>
+<div>
+    <table class="table table-responsive">
+        <tr>
+            <td>Name</td>
+            <td>PhoneNumber</td>
+            <td>Position</td>
+            <td>Letter</td>
+            <td>Starting Date</td>
+            <td>Resume</td>
+
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var jobform in Model.JobForms)
+            {
+        <tr>
+            <td>@jobform.Name</td>
+            <td>@jobform.PhoneNumber</td>
+            <td>@jobform.Position</td>
+            <td>@jobform.Letter</td>
+            <td>@Html.DisplayFor(modelItem => jobform.StartingDate)</td>
+            <td>@jobform.Resume</td>
+
+            <td><a class="btn btn-xs btn-info" asp-area="Admin" asp-controller="Admin" asp-action="Update" asp-route-announcementId="@jobform.ApplicationID">Update</a></td>
+            <td><a class="btn btn-xs btn-danger" asp-area="Admin" asp-controller="Admin" asp-action="Delete" asp-route-announcementId="@jobform.ApplicationID">Delete</a></td>
+
+        </tr>
+
+
+            }
+    </table>
+</div>
