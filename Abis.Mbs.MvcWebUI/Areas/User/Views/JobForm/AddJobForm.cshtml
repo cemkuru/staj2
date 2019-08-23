@@ -4,49 +4,99 @@
     Layout = "~/Views/_AdminLayout.cshtml";
 }
 
-<h1>FormUpdate</h1>
+<h2 style="">Start your application</h2>
 
 
+<div class="bg-img">
+    <form asp-area="User" asp-controller="JobForm" asp-action="AddJobForm" method="post">
 
-<form asp-area="User" asp-controller="JobForm" asp-action="AddJobForm" method="post">
-    <div class="form-group">
-        <label asp-for="JobForm.Name"></label>
-        <input asp-for="JobForm.Name" class="form-control" placeholder="Name " />
-        <span asp-validation-for="JobForm.Name"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="JobForm.PhoneNumber"></label>
-        <input asp-for="JobForm.PhoneNumber" class="form-control" placeholder="Phone Number " />
-        <span asp-validation-for="JobForm.PhoneNumber"></span>
-    </div>
+        <!-- Grid row -->
+        <div class="form-row">
+            <!-- Grid column -->
+            <div class="col-md-6">
+                <!-- Material input -->
+                <div class="md-form form-group">
+                    <label asp-for="JobForm.Name"></label>
+                    <input type="text" asp-for="JobForm.Name" class="form-control" placeholder="Name " />
+                    <span asp-validation-for="JobForm.Name"></span>
+                </div>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-6">
+                <!-- Material input -->
+                <div class="md-form form-group">
+                    <label asp-for="JobForm.PhoneNumber"></label>
+                    <input type="text" asp-for="JobForm.PhoneNumber" class="form-control" placeholder="Phone Number " />
+                    <span asp-validation-for="JobForm.PhoneNumber"></span>
+                </div>
+            </div>
+            <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+        <!-- Grid row -->
+        <div class="row">
+            <!-- Grid column -->
+            <div class="col-md-12">
+                <!-- Material input -->
+                <div class="md-form form-group">
+                    <label asp-for="JobForm.Position"></label>
+                    <input type="text" asp-for="JobForm.Position" class="form-control" placeholder="Position" />
+                    <span asp-validation-for="JobForm.Position"></span>
+                </div>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-12">
+                <!-- Material input -->
+                <div class="md-form form-group">
+                    <label asp-for="JobForm.Letter"></label>
+                    <i class="fas fa-pencil-alt prefix"></i>
+                    <textarea id="form10" class="md-textarea form-control" rows="3"></textarea>
+                </div>
 
-    <div class="form-group">
-        <label asp-for="JobForm.Position"></label>
-        <input asp-for="JobForm.Position" class="form-control" placeholder="Position" />
-        <span asp-validation-for="JobForm.Position"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="JobForm.Resume"></label>
-        <input type="file" asp-for="JobForm.Resume" class="form-control" placeholder="Resume" />
-        <span asp-validation-for="JobForm.Resume"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="JobForm.Letter"></label>
-        <input asp-for="JobForm.Letter" class="form-control" placeholder="Letter" />
-        <span asp-validation-for="JobForm.Letter"></span>
-    </div>
+            </div>
+            <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+        <!-- Grid row -->
+        <div class="form-row">
+            <!-- Grid column -->
+            <div class="col-md-6">
+                <!-- Material input -->
 
-    <div class="form-group">
-        <label asp-for="JobForm.StartingDate"></label>
-        <input asp-for="JobForm.StartingDate" class="form-control" placeholder="Date" />
-        <span asp-validation-for="JobForm.StartingDate"></span>
-    </div>
+                <div class="md-form form-group">
+                    <label asp-for="JobForm.Resume"></label>
+                    <input type="file" asp-for="JobForm.Resume" class="form-control" placeholder="Resume" />
+                    <span asp-validation-for="JobForm.Resume"></span>
+                </div>
 
-    @if (TempData["applicationMessage"] != null)
-    {
-    <div class="alert alert-success">@TempData["success"];</div>
-    }
-    <input type="hidden" asp-for="JobForm.ApplicationID" />
-    <input type="submit" value="Apply" class="btn btn-xs btn-success" />
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-6">
+                <!-- Material input -->
+                <div class="md-form form-group">
+                    <label asp-for="JobForm.StartingDate"></label>
+                    <input type="date" asp-for="JobForm.StartingDate" class="form-control" placeholder="Date" />
+                    <span asp-validation-for="JobForm.StartingDate"></span>
+                </div>
+            </div>
+            <!-- Grid column -->
+        </div>
+        
 
-</form>
+        @if (TempData["applicationMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["success"];</div>
+        }
+        <input type="hidden" asp-for="JobForm.ApplicationID" />
+        <input type="submit" value="Apply" class="btn btn-xs btn-success" />
+
+    </form>
+</div>
+
+
+<!-- Extended material form grid -->
+
+<!-- Extended material form grid -->
