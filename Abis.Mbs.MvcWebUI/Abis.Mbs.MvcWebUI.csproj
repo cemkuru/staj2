@@ -33,6 +33,8 @@
   <ItemGroup>
 
     <Folder Include="Areas\User\Controllers\" />
+
+    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
 

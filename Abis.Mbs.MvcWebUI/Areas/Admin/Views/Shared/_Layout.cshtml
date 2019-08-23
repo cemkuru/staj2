@@ -32,158 +32,129 @@
             </nav>*@
     </header>
 
-    <!-- Page Wrapper -->
+    <!-- WRAPPER -->
     <div id="wrapper">
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="brand">
+                <a href="index.html"><img src="" alt="Klorofil Logo" class="img-responsive logo"></a>
             </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
+            <div class="container-fluid">
+                <div class="navbar-btn">
+                    <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
                 </div>
-            </li>
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                <form class="navbar-form navbar-left">
+                    <div class="input-group">
+                        <input type="text" value="" class="form-control" placeholder="Search dashboard...">
+                        <span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
                     </div>
+                </form>
+                <div class="navbar-btn navbar-btn-right">
+                    <a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
                 </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
+                <div id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+                                <i class="lnr lnr-alarm"></i>
+                                <span class="badge bg-danger">5</span>
+                            </a>
+                            <ul class="dropdown-menu notifications">
+                                <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
+                                <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
+                                <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
+                                <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
+                                <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
+                                <li><a href="#" class="more">See all notifications</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Basic Use</a></li>
+                                <li><a href="#">Working With Data</a></li>
+                                <li><a href="#">Security</a></li>
+                                <li><a href="#">Troubleshooting</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+                                <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
+                                <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+                                <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+                            </ul>
+                        </li>
+                        <!-- <li>
+                            <a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+                        </li> -->
+                    </ul>
+                </div>
             </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Pages Screens:</h6>
-                        <a class="collapse-item" href='Job'>Jobs</a>
+        </nav>
+        <!-- END NAVBAR -->
+        <!-- LEFT SIDEBAR -->
+        <div id="sidebar-nav" class="sidebar">
+            <div class="sidebar-scroll">
+                <nav>
+                    <ul class="nav">
 
-                        @*  <a class="collapse-item" href="register.html">Register</a>
-                            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                            <div class="collapse-divider"></div>
-                            <h6 class="collapse-header">Other Pages:</h6>
-                            <a class="collapse-item" href="404.html">404 Page</a>
-                            <a class="collapse-item" href="blank.html">Blank Page</a>*@
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span>
-                </a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
-                </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+
+                        <li><a href="index.html" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                        <li>
+                            <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-bullhorn"></i> <span>Duyru Düzenle</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                            <div id="subPages" class="collapse ">
+                                <ul class="nav">
+                                    <li><a href="@Url.Action("Add","Admin")" class="">Duyru Ekle</a></li>
+                                    <li><a href="@Url.Action("Index","Admin")" class="">Duyru Sil/Gücelle</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
+                        <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
+                        <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
+                        <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
+                        <li>
+                            <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                            <div id="subPages" class="collapse ">
+                                <ul class="nav">
+                                    <li><a href="page-profile.html" class="">Profile</a></li>
+                                    <li><a href="page-login.html" class="">Login</a></li>
+                                    <li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
+                        <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
+                        <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
+                    </ul>
+                </nav>
             </div>
-        </ul>
-        <!-- End of Sidebar -->
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-
-
-
+        </div>
+        <!-- END LEFT SIDEBAR -->
+        <!-- MAIN -->
+        <div class="main">
+            <!-- MAIN CONTENT -->
             <partial name="_CookieConsentPartial" />
-
-            @RenderBody()
-
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+            <!-- END MAIN CONTENT -->
         </div>
-        <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
+        <!-- END MAIN -->
+        <div class="clearfix"></div>
+        <footer>
+            <div class="container-fluid">
+                <p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
             </div>
-        </div>
+        </footer>
     </div>
+    <!-- END WRAPPER -->
+    <!-- Javascript -->
 
-
+ 
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -206,14 +177,24 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/sb-admin-2.js" asp-append-version="true"></script>
-    <script src="~/js/demo/chart-area-demo.js" asp-append-version="true"></script>
-    <script src="~/js/demo/chart-pie-demo.js" asp-append-version="true"></script>
-    <script src="~/js/jquery-easing/jquery.easing.js" asp-append-version="true"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <!-- Custom styles for this template-->
-    <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="~/css/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/lib/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+    <script src="~/lib/vendor/chartist/js/chartist.min.js"></script>
+    <script src="~/js/admin-js/scripts/klorofil-common.js"></script>
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" href="~/lib/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/lib/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/lib/vendor/linearicons/style.css">
+    <link rel="stylesheet" href="~/lib/vendor/chartist/css/chartist-custom.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="~/css/admin-css/css/main.css">
+    <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+    <link rel="stylesheet" href="~/css/admin-css/css/demo.css">
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     @RenderSection("Scripts", required: false)
 </body>
 </html>
