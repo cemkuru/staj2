@@ -33,8 +33,6 @@
   <ItemGroup>
 
     <Folder Include="Areas\User\Controllers\" />
-
-    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
 
@@ -46,6 +44,37 @@
     <None Include="Areas\Admin\Views\Shared\_CookieConsentPartial.cshtml" />
     <None Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <None Include="Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="wwwroot\css\admin-css\css\demo.css.map" />
+    <None Include="wwwroot\css\admin-css\css\main.css.map" />
+    <None Include="wwwroot\js\admin-js\scripts\klorofil-common.js" />
+    <None Include="wwwroot\lib\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\lib\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\lib\vendor\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\lib\vendor\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\vendor\bootstrap\js\npm.js" />
+    <None Include="wwwroot\lib\vendor\chartist\css\chartist-custom.css.map" />
+    <None Include="wwwroot\lib\vendor\chartist\js\chartist.js" />
+    <None Include="wwwroot\lib\vendor\chartist\js\chartist.min.js" />
+    <None Include="wwwroot\lib\vendor\chartist\map\chartist.css.map" />
+    <None Include="wwwroot\lib\vendor\chartist\map\chartist.min.js.map" />
+    <None Include="wwwroot\lib\vendor\chartist\scss\chartist.scss" />
+    <None Include="wwwroot\lib\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\lib\vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\lib\vendor\jquery-slimscroll\jquery.slimscroll.js" />
+    <None Include="wwwroot\lib\vendor\jquery-slimscroll\jquery.slimscroll.min.js" />
+    <None Include="wwwroot\lib\vendor\jquery.easy-pie-chart\angular.easypiechart.js" />
+    <None Include="wwwroot\lib\vendor\jquery.easy-pie-chart\angular.easypiechart.min.js" />
+    <None Include="wwwroot\lib\vendor\jquery.easy-pie-chart\easypiechart.js" />
+    <None Include="wwwroot\lib\vendor\jquery.easy-pie-chart\easypiechart.min.js" />
+    <None Include="wwwroot\lib\vendor\jquery.easy-pie-chart\jquery.easypiechart.js" />
+    <None Include="wwwroot\lib\vendor\jquery.easy-pie-chart\jquery.easypiechart.min.js" />
+    <None Include="wwwroot\lib\vendor\jquery\jquery.js" />
+    <None Include="wwwroot\lib\vendor\jquery\jquery.min.js" />
+    <None Include="wwwroot\lib\vendor\jquery\jquery.min.map" />
+    <None Include="wwwroot\lib\vendor\linearicons\fonts\Linearicons-Free.svg" />
+    <None Include="wwwroot\lib\vendor\linearicons\fonts\Linearicons-Free.woff2" />
+    <None Include="wwwroot\lib\vendor\toastr\toastr.js" />
+    <None Include="wwwroot\lib\vendor\toastr\toastr.min.js" />
   </ItemGroup>
 
 </Project>

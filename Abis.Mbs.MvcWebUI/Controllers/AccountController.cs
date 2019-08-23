@@ -55,7 +55,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
             {
               
               
-                CustomIdentityUser user = new CustomIdentityUser
+                var  user = new CustomIdentityUser
                 {
                     UserName = registerViewModel.UserName,
                     Email = registerViewModel.Email
@@ -68,7 +68,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
                 {
                     if (!_roleManager.RoleExistsAsync("User").Result)
                     {
-                        CustomIdentityRole role = new CustomIdentityRole
+                        var  role = new CustomIdentityRole
                         {
                             Name = "User"
                         };

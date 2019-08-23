@@ -1,5 +1,4 @@
 ﻿using Abis.Mbs.Business.Abstract;
-using Abis.Mbs.MvcWebUI.Areas.User.Models;
 using Abis.Mbs.MvcWebUI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +24,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
             int pageSize = 3;
             var announcements = _announcementService.GetAll();
 
-            AnnouncementListViewModel model = new AnnouncementListViewModel
+            var model = new AnnouncementListViewModel
             {
                 Announcements = announcements.Skip((page - 1) * pageSize).Take(pageSize).ToList()
             };
