@@ -1,28 +1,43 @@
 ﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.AnnouncementListViewModel
+
 @{
-    Layout = "~/Views/_AdminLayout.cshtml";
+    Layout = "~/Views/_Layout1.cshtml";
 }
 
-<div>
-    <table class="table table-responsive">
-        <tr>
-            <td>Date</td>
-            <td>Title</td>
-        </tr>
-        @foreach (var announcement in Model.Announcements)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => announcement.ACreateDate)</td>
-                <td><a asp-area="User" asp-controller="Announcement" asp-action="Detial" asp-route-id="@announcement.AnnouncementId">@announcement.ATitle</a> </td>
-                @*<td>@Html.DisplayFor(modelItem => announcement.ATitle)</td>*@
 
-                @*<td><a class="" asp-controller="Admin" asp-action="Update" asp-route-announcementId="@announcement.AnnouncementId">Update</a></td>*@
-                @*<td><li><a href="@Html.ActionLink("/Detail/id/" + announcement.AnnouncementId, "Announcement")"> Bilgi  </a> </li></td>*@
-                @*<td>@announcement.ADescription</td>*@
+<main role="main" style="margin-top:150px;">
+    @*<div class="header-footer" style="background-color:gray; height:60px;">
+            <img class="img-fluid" src="~/img/999999-horz-horz.jpg" />
+
+        </div>*@
+    <div class="container marketing">
+
+        <div class="row">
+            @foreach (var announcement in Model.Announcements)
+            {
+                <div class="col-lg-3" style="padding-left:55px;">
+                    <img class="rounded-circle" src="~/İmg/999999.jpg" alt="Generic placeholder image" width="140" height="140">
+                    <p class="date">@Html.DisplayFor(modelItem => announcement.ACreateDate)</p>
+                    <h2>@announcement.ATitle</h2>
+                    <p>@announcement.ADescription</p>
+                    <p><a class="btn btn-secondary" asp-area="User" asp-action="Detial" asp-route-id="@announcement.AnnouncementId" role="button">İncele &raquo;</a></p>
+
+                </div>
+            }
+        </div>
+
+        <div>
+            <announcement-list-pager current-page="@Model.CurrentPage"
+                                     page-count="@Model.PageCount"
+                                     page-size="@Model.PageSize"></announcement-list-pager>
+            
+        </div>
 
 
-            </tr>
 
-        }
-    </table>
-</div>
+
+
+    </div>
+</main>
+
+

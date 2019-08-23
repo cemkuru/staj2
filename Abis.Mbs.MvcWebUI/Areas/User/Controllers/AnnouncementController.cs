@@ -2,10 +2,13 @@
 using Abis.Mbs.MvcWebUI.Areas.User.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
 {
-    [Authorize (Roles = "User")]
+    //[Authorize (Roles = "User")]
+    [AllowAnonymous]
     [Area("User")]
     public class AnnouncementController : Controller
     {
@@ -17,11 +20,15 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
 
         public ActionResult Index(int page = 1)
         {
-
+            int pageSize = 8;
             var announcements = _announcementService.GetAll();
-            var  model = new AnnouncementListViewModel
+            var model = new AnnouncementListViewModel
             {
-                Announcements = announcements
+                Announcements = announcements.Skip((page - 1) * pageSize).Take(pageSize).ToList(),
+                PageCount = (int)Math.Ceiling(announcements.Count / (double)pageSize),
+                PageSize = pageSize,
+                CurrentPage=page
+
             };
             return View(model);
         }
