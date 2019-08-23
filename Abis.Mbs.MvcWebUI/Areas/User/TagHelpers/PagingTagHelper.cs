@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Abis.Mbs.MvcWebUI.TagHelpers
 {
-    [HtmlTargetElement("product-list-pager")]
+    [HtmlTargetElement("announcement-list-pager")]
     public class PagingTagHelper : TagHelper
     {
         [HtmlAttributeName("page-size")]
@@ -31,8 +31,8 @@ namespace Abis.Mbs.MvcWebUI.TagHelpers
             for (int i = 1; i <= PageCount; i++)
             {
                 stringBuilder.AppendFormat("<li class='{0}'>", i == CurrentPage ? "active" : "");
-                stringBuilder.AppendFormat("<a href='/product/index?page={0}&category={1}'>{2}</a>",
-                    i, CurrentCategory, i);
+                stringBuilder.AppendFormat("<a href='/user/announcement/index?page={0}'>{1}</a>",
+                    i, i);
                 stringBuilder.Append("</li>");
             }
             output.Content.SetHtmlContent(stringBuilder.ToString());

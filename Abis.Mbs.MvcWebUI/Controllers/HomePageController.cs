@@ -1,7 +1,9 @@
 ﻿using Abis.Mbs.Business.Abstract;
+using Abis.Mbs.MvcWebUI.Areas.User.Models;
 using Abis.Mbs.MvcWebUI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Abis.Mbs.MvcWebUI.Controllers
 {
@@ -16,13 +18,16 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         {
             _announcementService = announcementService;
         }
-        public IActionResult Index()
+
+        [AllowAnonymous]
+        public IActionResult Index(int page = 1)
         {
+            int pageSize = 3;
             var announcements = _announcementService.GetAll();
 
-            var  model = new AnnouncementListViewModel
+            AnnouncementListViewModel model = new AnnouncementListViewModel
             {
-                Announcements = announcements
+                Announcements = announcements.Skip((page - 1) * pageSize).Take(pageSize).ToList()
             };
             return View(model);
 
@@ -32,7 +37,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         {
 
             var announcements = _announcementService.GetById(id);
-            var  model = new AnnouncementViewModel
+            var  model = new Areas.User.Models.AnnouncementViewModel
             {
                 Announcement = announcements
             };

@@ -16,16 +16,16 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         {
             _announcementService = announcementService;
         }
-        public IActionResult Index()
-        {
-            var announcements = _announcementService.GetAll();
-            var model = new AnnouncementListViewModel
-            {
-                Announcements = announcements
-            };
-            return View(model);
+        //public IActionResult Index()
+        //{
+        //    var announcements = _announcementService.GetAll();
+        //    var model = new AnnouncementListViewModel
+        //    {
+        //        Announcements = announcements
+        //    };
+        //    return View(model);
            
-        }
+        //}
 
         public ActionResult Details(int id)
         {

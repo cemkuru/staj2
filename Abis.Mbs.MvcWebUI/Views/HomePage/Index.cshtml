@@ -44,25 +44,28 @@
                     </li>
 
                     @* Job Announcement button *@
-
-                    @if (User.IsInRole("User"))
+                    @if (User.Identity.IsAuthenticated)
                     {
+                        @if (User.IsInRole("User"))
+                        {
 
-                        <li class="nav-item active">
-                            <a class="nav-link" asp-area="User" asp-controller="Job" asp-action="Index">Jobs<span class="sr-only">(current)</span></a>
-                        </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="User" asp-controller="Job" asp-action="Index">Jobs<span class="sr-only">(current)</span></a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @* Job Announcement button *@
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobIndex">Update/Delete Jobs<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobFormIndex">Job Form Application<span class="sr-only">(current)</span></a>
+                            </li>
+                        }
                     }
 
-                    @if (User.IsInRole("Admin"))
-                    {
-                        @* Job Announcement button *@
-                        <li class="nav-item active">
-                            <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobIndex">Update/Delete Jobs<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobFormIndex">Job Form Application<span class="sr-only">(current)</span></a>
-                        </li>
-                    }
 
 
 
@@ -137,87 +140,93 @@
         <div class="container marketing">
 
             <!-- Three columns of text below the carousel -->
-            <div class="row" >
-                <div class="col-xs-12 col-lg-8">   </div>
-                <div class="col-xs-12 col-lg-4" >
+            <div class="row" style="width:1150px;">
+                <div class="col-xs-12 col-lg-7" style="width:730px;">   </div>
+                <div class="col-xs-12 col-lg-5" style="width:380px; padding-left:60px;">
+                    <div class="clearfix">
+                        <h2 class="title">Duyurular</h2>
+                    </div>
                     @foreach (var announcement in Model.Announcements)
                     {
-                    <div class="row">
-                        <div class="col-xs-12 col-lg-12" style="color:black">
-
-                            <img class="rounded-circle" src="~/İmg/999999.jpg" alt="Generic placeholder image" width="140" height="140">
-                            <div style="float:right">
-                                <h2>@announcement.ATitle</h2>
-                                <h5>@announcement.ACreateDate</h5>
+                        <div class="row" style="width:470px; padding-top:20px;">
+                            @*<div class="col-xs-12 col-lg-12" style="color:black">*@
+                            <img class="rounded-circle" src="~/İmg/999999.jpg" alt="Generic placeholder image" width="120" height="120">
+                            <div style="float:right; width:345px;">
+                                <span class="date">@Html.DisplayFor(modelItem => announcement.ACreateDate)</span>
+                                <h5>@announcement.ATitle</h5>
                                 <p>@announcement.ADescription</p>
                                 <p><a class="btn btn-secondary" asp-action="Details" asp-route-id="@announcement.AnnouncementId" role="button">İncele &raquo;</a></p>
                             </div>
+
                         </div>
-                    </div>
                     }
-                     </div>
-                </div>
+                    <div class="btn-wrap clearfix">
+                        <a class="btn btn-lg btn-dark" asp-area="User" asp-controller="Announcement" asp-action="Index" role="button" style="margin-left:160px; margin-top:20px;">Tüm Duyurular</a>
 
-            @*<div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-        </div>*@<!-- /.col-lg-4 -->
-            @*<div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-        </div>*@<!-- /.col-lg-4 -->
-        </div><!-- /.row -->
-                <!-- START THE FEATURETTES -->
 
-                <hr class="featurette-divider">
-
-                <div class="row featurette">
-                    <div class="col-md-7">
-                        <h2 class="featurette-heading"><span class="text-muted">Mezun Bilgi Sistemi</span></h2>
-                        <p class="lead" style="color:black">
-                            Değerli Mezunumuz
-
-                            Mezun Bilgi Sistemi sizlerin mezuniyet sonrası üniversiteniz ile olan iletişiminizin devam etmesi için oluşturulmuştur. Sistem üzerinden mezuniyet sonrası (Eğitim, iletişim, iş vb.) bilgilerinizi güncellemeniz üniversite olarak sizlere ulaşabilmemiz ve sizlerinde iş başvurularında bulunduğunuz her yerden özgeçmiş (CV) çıktısı almanıza kolaylık sağlayacaktır.
-                        </p>
-                    </div>
-                    <div class="col-md-5">
-                        <img class="featurette-image img-fluid mx-auto" src="~/İmg/101.jpg" alt="Generic placeholder image">
                     </div>
                 </div>
 
-                <hr class="featurette-divider">
+                @*<div class="col-lg-4">
+                <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <h2>Heading</h2>
+                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            </div>*@<!-- /.col-lg-4 -->
+                @*<div class="col-lg-4">
+                <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <h2>Heading</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            </div>*@<!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+            <!-- START THE FEATURETTES -->
 
-                <div class="row featurette">
-                    <div class="col-md-7 order-md-2">
-                        <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-                        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                    </div>
-                    <div class="col-md-5 order-md-1">
-                        <img class="featurette-image img-fluid mx-auto" src="~/İmg/5.jpg" alt="Generic placeholder image">
-                    </div>
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading"><span class="text-muted">Mezun Bilgi Sistemi</span></h2>
+                    <p class="lead" style="color:black">
+                        Değerli Mezunumuz
+
+                        Mezun Bilgi Sistemi sizlerin mezuniyet sonrası üniversiteniz ile olan iletişiminizin devam etmesi için oluşturulmuştur. Sistem üzerinden mezuniyet sonrası (Eğitim, iletişim, iş vb.) bilgilerinizi güncellemeniz üniversite olarak sizlere ulaşabilmemiz ve sizlerinde iş başvurularında bulunduğunuz her yerden özgeçmiş (CV) çıktısı almanıza kolaylık sağlayacaktır.
+                    </p>
                 </div>
-
-                <hr class="featurette-divider">
-
-                <div class="row featurette">
-                    <div class="col-md-7">
-                        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-                        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                    </div>
-                    <div class="col-md-5">
-                        <img class="featurette-image img-fluid mx-auto" src="~/İmg/1.jpg" alt="Generic placeholder image">
-                    </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-fluid mx-auto" src="~/İmg/101.jpg" alt="Generic placeholder image">
                 </div>
+            </div>
 
-                <hr class="featurette-divider">
+            <hr class="featurette-divider">
 
-                <!-- /END THE FEATURETTES -->
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                </div>
+                <div class="col-md-5 order-md-1">
+                    <img class="featurette-image img-fluid mx-auto" src="~/İmg/5.jpg" alt="Generic placeholder image">
+                </div>
+            </div>
 
-            </div><!-- /.container -->
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-fluid mx-auto" src="~/İmg/1.jpg" alt="Generic placeholder image">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <!-- /END THE FEATURETTES -->
+
+        </div><!-- /.container -->
         <!-- FOOTER -->
         <footer class="container">
             <p class="float-right"><a href="#">Back to top</a></p>
