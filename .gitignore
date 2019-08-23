@@ -1,0 +1,13 @@
+.vs/
+Abis.Core/bin/
+Abis.Core/obj/
+Abis.Mbs.Business/bin/Debug/netcoreapp2.2/Abis.Core.dll
+Abis.Mbs.Business/bin/Debug/
+Abis.Mbs.Business/obj/
+Abis.Mbs.DataAccess/bin/
+Abis.Mbs.DataAccess/obj/
+Abis.Mbs.Entities/bin/
+Abis.Mbs.Entities/obj/
+Abis.Mbs.MvcWebUI/bin/
+Abis.Mbs.MvcWebUI/obj/
+Abis.Mbs.MvcWebUI/Abis.Mbs.MvcWebUI.csproj.user

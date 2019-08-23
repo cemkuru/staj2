@@ -1,12 +1,7 @@
-﻿    using Abis.Mbs.Business.Abstract;
+﻿using Abis.Mbs.Business.Abstract;
 using Abis.Mbs.MvcWebUI.Areas.User.Models;
-using Abis.Mbs.MvcWebUI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
 {
@@ -24,7 +19,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
         {
 
             var announcements = _announcementService.GetAll();
-            AnnouncementListViewModel model = new AnnouncementListViewModel
+            var  model = new AnnouncementListViewModel
             {
                 Announcements = announcements
             };
@@ -35,7 +30,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
         {
            
             var announcements = _announcementService.GetById(id);
-            AnnouncementViewModel model = new AnnouncementViewModel
+            var  model = new AnnouncementViewModel
             {
                 Announcement = announcements
             };

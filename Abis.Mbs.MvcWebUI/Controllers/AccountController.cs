@@ -24,14 +24,9 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         private SignInManager<CustomIdentityUser> _signInManager;
 
         private readonly IEmailSender _emailSender;
-
-
-
-
-
         public AccountController
             (UserManager<CustomIdentityUser> userManager,
-            RoleManager<CustomIdentityRole> roleManager, 
+            RoleManager<CustomIdentityRole> roleManager,
             SignInManager<CustomIdentityUser> signInManager,
             IEmailSender emailSender)
         {
@@ -58,6 +53,8 @@ namespace Abis.Mbs.MvcWebUI.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+              
+              
                 CustomIdentityUser user = new CustomIdentityUser
                 {
                     UserName = registerViewModel.UserName,
@@ -89,7 +86,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
                     //var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     //await _emailSender.SendEmailConfirmationAsync(registerViewModel.Email, callbackUrl);
                     _userManager.AddToRoleAsync(user, "User").Wait();
-                    
+
                     // Email Confirmation
                     string confirmationToken = _userManager.GenerateEmailConfirmationTokenAsync(user).Result;
                     var confirmationLink = Url.Action("ConfirmEmail", "Account", new
@@ -111,7 +108,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
                     };
                     MailMessage mail = new MailMessage
                     {
-                      //string link = String.Format("<a href=\"http://localhost:1900/ResetPassword/?username={0}&reset={1}\">Click here</a>", user.UserName, HashResetParams( user.UserName, user.ProviderUserKey.ToString() ));
+                        //string link = String.Format("<a href=\"http://localhost:1900/ResetPassword/?username={0}&reset={1}\">Click here</a>", user.UserName, HashResetParams( user.UserName, user.ProviderUserKey.ToString() ));
 
                         From = new MailAddress("gueye.amadou1996@gmail.com", user.Email),
                         Body = "Dear " + user.Email + ",\nYour Mbs account has been created successfully." +
@@ -123,7 +120,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
                     client.Send(mail);
                     // End email confirmation
 
-
+                   
                     return RedirectToAction("Login", "Account");
                 }
                 else
@@ -170,6 +167,8 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
+            var rols=_roleManager.Roles.ToList();
+            
             if (ModelState.IsValid)
             {
                 var result = _signInManager.PasswordSignInAsync(loginViewModel.UserName,
@@ -270,7 +269,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
             return View(nameof(ExternalLogin), model);
         }
 
-       
+
 
 
         private IActionResult RedirectToLocal(string returnUrl)
@@ -281,10 +280,15 @@ namespace Abis.Mbs.MvcWebUI.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Admin", new { area = "Admin"});
+                return RedirectToAction("Index", "Admin", new { area = "Admin" });
             }
         }
-
+        [HttpGet]
+        [AllowAnonymous]
+        private IActionResult AccessDenied(string returnUrl)
+        {
+            return View();
+        }
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)

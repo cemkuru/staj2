@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Abis.Mbs.Business.Abstract;
+
 using Abis.Mbs.MvcWebUI.Models;
-using Abis.Mbs.Business.Abstract;
 using Microsoft.AspNetCore.Authorization;
-using Abis.Mbs.MvcWebUI.Areas.User.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Abis.Mbs.MvcWebUI.Controllers
 {
@@ -23,7 +19,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         public IActionResult Index()
         {
             var announcements = _announcementService.GetAll();
-            AnnouncementListViewModel model = new AnnouncementListViewModel
+            var model = new AnnouncementListViewModel
             {
                 Announcements = announcements
             };
@@ -35,7 +31,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         {
 
             var announcements = _announcementService.GetById(id);
-            AnnouncementViewModel model = new AnnouncementViewModel
+            var  model = new AnnouncementViewModel
             {
                 Announcement = announcements
             };
