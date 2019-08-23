@@ -167,6 +167,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel loginViewModel)
         {

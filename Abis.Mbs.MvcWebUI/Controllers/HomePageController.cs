@@ -23,6 +23,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         }
        
 
+        [AllowAnonymous]
         public IActionResult Index(int page = 1)
         {
             int pageSize = 3;
