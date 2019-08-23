@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 
 namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
 {
-    [Authorize (Roles = "User")]
+    //[Authorize (Roles = "User")]
+    [AllowAnonymous]
+
     [Area("User")]
     public class AnnouncementController : Controller
     {

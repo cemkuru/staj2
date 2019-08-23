@@ -21,13 +21,16 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         {
             _announcementService = announcementService;
         }
-        public IActionResult Index()
+       
+
+        public IActionResult Index(int page = 1)
         {
+            int pageSize = 3;
             var announcements = _announcementService.GetAll();
 
             AnnouncementListViewModel model = new AnnouncementListViewModel
             {
-                Announcements = announcements
+                Announcements = announcements.Skip((page - 1) * pageSize).Take(pageSize).ToList()
             };
             return View(model);
 
