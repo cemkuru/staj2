@@ -44,7 +44,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Job(Job job)
+        public ActionResult Add(Job job)
         {
             if (ModelState.IsValid)
             {

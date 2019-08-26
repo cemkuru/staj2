@@ -1,0 +1,68 @@
+﻿
+
+@model Abis.Mbs.MvcWebUI.Entities.CustomIdentityUser
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <div class="container-fluid">
+        <!-- OVERVIEW -->
+        <div class="panel panel-headline">
+
+            <div class="wrapper">
+                <div class="inner">
+                   
+                    <div class="panel-body">
+                        <form asp-area="Admin" asp-controller="Registration" asp-action="Add" method="post">
+
+                            <h3> Kullanıcı Ekle</h3>
+
+                            <div class="form-group">
+
+                                <input asp-for="UserName" class="form-control" placeholder="Name" type="text" />
+                                <span asp-validation-for="UserName"></span>
+                            </div>
+
+                            <div class="form-wrapper">
+
+                                <input asp-for="NormalizedUserName" class="form-control" type="text" placeholder="UserName" />
+                                
+                                <span asp-validation-for="NormalizedUserName"></span>
+                            </div>
+                            <div class="form-wrapper">
+
+                                <input asp-for="Email" class="form-control" placeholder="Email" type="text" />
+                                
+                                <span asp-validation-for="Email"></span>
+                            </div>
+
+                            @*<div class="form-wrapper">
+
+                                <input asp-for="REGISTRATION.Gender" class="form-control" placeholder="Male/Female/Other " type="text" />
+
+                                <span asp-validation-for="REGISTRATION.Gender"></span>
+                            </div>*@
+                            <div class="form-wrapper">
+
+                                <input asp-for="PasswordHash" class="form-control" placeholder="Password" type="password" />
+                                <i class="zmdi zmdi-lock"></i>
+                                <span asp-validation-for="PasswordHash"></span>
+                            </div>
+                            <input type="submit" value="Register" class="btn btn-xs btn-success">
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

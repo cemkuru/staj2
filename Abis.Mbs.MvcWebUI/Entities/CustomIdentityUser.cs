@@ -9,6 +9,11 @@ namespace Abis.Mbs.MvcWebUI.Entities
 {
     public class CustomIdentityUser : IdentityUser
     {
-        //
+        //List<CustomIdentityUser> GetAll();
+
+        //void Add(CustomIdentityUser addUser);
+        //void Update(REGISTRATION registration);
+        //void Delete(int registerId);
+        //REGISTRATION GetById(int registerId);
     }
 }

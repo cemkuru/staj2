@@ -1,0 +1,58 @@
+﻿@model List<Abis.Mbs.MvcWebUI.Entities.CustomIdentityUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-headline">
+
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Kullancı <b>Listesi</b></h2></div>
+
+                </div>
+            </div>
+
+            <form class="" asp-area="Admin" asp-controller="Registration" asp-action="Index">
+
+                <div>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Username</td>
+                                <td>Email</td>
+                                <td>Actions</td>
+</thead>
+
+                        </tr>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.NormalizedUserName</td>
+                                <td>@user.UserName</td>
+                                <td>@user.Email</td>
+                                
+
+
+
+
+                                <td>
+                                    <a class="edit" asp-area="Admin" asp-controller="Registration" asp-action="Update" asp-route-registerId="@user.Id" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a class="delete" asp-area="Admin" asp-controller="Registration" asp-action="Delete" asp-route-registerId="@user.Id" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+
+
+                                </td>
+
+
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

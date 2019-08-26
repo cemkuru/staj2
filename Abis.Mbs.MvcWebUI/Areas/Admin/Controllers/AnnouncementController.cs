@@ -50,7 +50,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
             {
                 _announcementService.Add(announcement);
 
-                TempData.Add("message", "Announcement was successfully added");
+                //TempData.Add("message", "Announcement was successfully added");
             }
 
             return RedirectToAction("Index", new { area = "Admin" });
@@ -77,7 +77,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _announcementService.Update(announcement);
-                TempData.Add("message", "Announcement was successfully updated");
+                //TempData.Add("message", "Announcement was successfully updated");
             }
 
             return RedirectToAction("Index", new { area = "Admin" });
@@ -85,7 +85,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
         public ActionResult Delete(int announcementId)
         {
             _announcementService.Delete(announcementId);
-            TempData.Add("message", "Announcement was successfully deleted");
+            //TempData.Add("message", "Announcement was successfully deleted");
             return RedirectToAction("Index", new { area = "Admin" });
         }
 

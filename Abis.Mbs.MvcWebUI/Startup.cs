@@ -30,8 +30,10 @@ namespace Abis.Mbs.MvcWebUI
             services.AddScoped<IJobService, JobManager>();
             services.AddScoped<IJobDal, EfJobDal>();
 
+            //Application registration 
+            services.AddScoped<IRegistrationService, RegistrationManager>();
+            services.AddScoped<IRegistrationDal, EfRegistrationDal>();
             //Application job form
-
             services.AddScoped<IJobFormService, JobFormManager>();
             services.AddScoped<IJobFormDal, EfJobFormDal>();
             

@@ -1,0 +1,58 @@
+﻿@model Abis.Mbs.MvcWebUI.Entities.CustomIdentityUser
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="panel panel-headline">
+
+    <h2>Update User</h2>
+
+    <div class="main-content">
+        <div class="container-fluid">
+            <!-- OVERVIEW -->
+            <div class="panel panel-headline">
+
+                <div class="wrapper">
+                    <div class="inner">
+
+                        <div class="panel-body">
+
+                            <form asp-area="Admin" asp-controller="Registration" asp-action="Update" method="post">
+
+                                <div class="form-group">
+                                    <label asp-for="UserName"></label>
+                                    <input asp-for="UserName" class="form-control" placeholder="Name" />
+                                    <span asp-validation-for="UserName"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="NormalizedUserName"></label>
+                                    <input asp-for="NormalizedUserName" class="form-control" placeholder="Username" />
+                                    <span asp-validation-for="NormalizedUserName"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Email"></label>
+                                    <input asp-for="Email" class="form-control" placeholder="Email" />
+                                    <span asp-validation-for="Email"></span>
+                                </div>
+                               
+
+                                @*<input type="hidden" asp-for="Announcement.AnnouncementId" />*@
+
+                                <input type="hidden" asp-for="Id" />
+                                <input type="submit" value="Update" class="btn btn-xs btn-success" />
+
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
