@@ -5,11 +5,6 @@
 }
 
 
-
-
-
-
-
 <!-- MAIN CONTENT -->
 <div class="main-content">
     <div class="container-fluid">
@@ -46,7 +41,7 @@
                             <tbody>
 
                                 @foreach (var announcement in Model.Announcements)
-                                {
+                                 {
 
                                     <tr>
                                         <td>@announcement.ATitle</td>
@@ -62,7 +57,7 @@
                                             <a class="delete" asp-area="Admin" asp-controller="Announcement" asp-action="Delete" asp-route-announcementId="@announcement.AnnouncementId" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                                         </td>
                                     </tr>
-                                }
+                                 }
 
                             </tbody>
                         </table>

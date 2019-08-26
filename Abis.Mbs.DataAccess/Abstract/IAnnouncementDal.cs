@@ -8,6 +8,6 @@ namespace Abis.Mbs.DataAccess.Abstract
 {
     public interface IAnnouncementDal : IEntityRepository<Announcement>
     {
-
+        
     }
 }

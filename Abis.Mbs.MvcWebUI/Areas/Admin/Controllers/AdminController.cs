@@ -4,6 +4,7 @@ using Abis.Mbs.MvcWebUI.Areas.Admin.Models;
 using Abis.Mbs.MvcWebUI.Areas.User.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
 {
@@ -104,11 +105,16 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
         public ActionResult Index()
         {
 
-            var announcementListViewModel = new AnnouncementListViewModel
+            var model = new ReportViewModel
             {
-                Announcements = _announcementService.GetAll()
+                JobCount = _jobformService.GetAll().Count(),
+                AnnouncementCount = _announcementService.GetAll().Count()
+
             };
-            return View(announcementListViewModel);
+            return View(model);
+
+
+          
         }
 
         // Add Announcement
@@ -126,25 +132,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(Announcement announcement)
         {
-            //var db = new MbsContext();
-            //if(image1!=null)
-            //{
-            //    announcement.APhoto = new byte[image1.Length];
-            //    BinaryReader reader = new BinaryReader(image1.OpenReadStream());
-            //    announcement.APhoto = reader.ReadBytes((int)image1.Length);
-            //}
-            //db.Announcements.Add(announcement);
-            //db.SaveChanges();
            
-            //if (ModelState.IsValid && image1!=null)
-            //{
-            //    announcement.APhoto = new byte[image1.Length];
-            //    BinaryReader reader = new BinaryReader(image1.OpenReadStream());
-            //    announcement.APhoto = reader.ReadBytes((int)image1.Length);
-            //    _announcementService.Add(announcement);
-
-            //    TempData.Add("message", "Announcement was successfully added");
-            //}
             if (ModelState.IsValid)
             {
                 _announcementService.Add(announcement);
@@ -188,12 +176,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
             TempData.Add("message", "Announcement was successfully deleted");
             return RedirectToAction("Index", new { area = "Admin" });
         }
-        //End Delete Announcement
 
-        // End Announcement
-
-
-        // Job Form Application
 
 
 
@@ -208,33 +191,10 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
             return View(jobFormListViewModel);
         }
 
-        // End JobForm
-
-        //public ActionResult FormIndex(int page = 1)
-        //{
-        //    // Use LINQ to get list of genres.
-
-
-        //    var jobforms = _jobformService.GetAll();
-
-        //    JobFormListViewModel model = new JobFormListViewModel
-        //    {
-        //        JobForms = jobforms
-        //    };
-        //    return View(model);
-        //}
+        
 
 
 
-        //public ActionResult FormDetails(int id)
-        //{
-        //    var jobforms = _jobformService.GetById(id);
-        //    JobFormViewModel model = new JobFormViewModel
-        //    {
-        //        JobForm = jobforms
-        //    };
-        //    return View(model);
-        //}
 
     }
 }

@@ -190,6 +190,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         {
             _signInManager.SignOutAsync().Wait();
             return RedirectToAction("Login");
+
         }
 
         [HttpPost]
