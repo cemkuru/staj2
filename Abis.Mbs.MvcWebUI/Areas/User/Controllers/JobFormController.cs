@@ -56,16 +56,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
             }
             return RedirectToAction("JobFormIndex", new { area = "User" });
         }
-        //public ActionResult Detail(int id)
-        //{
-
-        //    var jobforms = _jobformService.GetById(id);
-        //    JobFormViewModel model = new JobFormViewModel
-        //    {
-        //        JobForm = jobforms
-        //    };
-        //    return View(model);
-        //}
+       
 
     }
 }
