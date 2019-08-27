@@ -25,6 +25,29 @@
     <!-- Custom styles for this template -->
 
     <link href="~/css/carousel.css" rel="stylesheet" />
+    @*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['Work', 11],
+                ['Eat', 2],
+                ['Commute', 2],
+                ['Watch TV', 2],
+                ['Sleep', 7]
+            ]);
+
+            var options = {
+                title: 'My Daily Activities',
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data, options);
+        }
+    </script>*@
 </head>
 <body>
 
@@ -141,7 +164,9 @@
 
             <!-- Three columns of text below the carousel -->
             <div class="row" style="width:1150px;">
-                <div class="col-xs-12 col-lg-7" style="width:730px;">   </div>
+                <div class="col-xs-12 col-lg-7" style="width:730px;">
+                    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+                </div>
                 <div class="col-xs-12 col-lg-5" style="width:380px; padding-left:60px;">
                     <div class="clearfix">
                         <h2 class="title">Duyurular</h2>
@@ -167,60 +192,18 @@
                     </div>
                 </div>
 
-                @*<div class="col-lg-4">
-                <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                <h2>Heading</h2>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div>*@<!-- /.col-lg-4 -->
-                @*<div class="col-lg-4">
-                <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div>*@<!-- /.col-lg-4 -->
-            </div><!-- /.row -->
-            <!-- START THE FEATURETTES -->
+               
 
             <hr class="featurette-divider">
 
-            <div class="row featurette">
-                <div class="col-md-7">
-                    <h2 class="featurette-heading"><span class="text-muted">Mezun Bilgi Sistemi</span></h2>
-                    <p class="lead" style="color:black">
-                        Değerli Mezunumuz
-
-                        Mezun Bilgi Sistemi sizlerin mezuniyet sonrası üniversiteniz ile olan iletişiminizin devam etmesi için oluşturulmuştur. Sistem üzerinden mezuniyet sonrası (Eğitim, iletişim, iş vb.) bilgilerinizi güncellemeniz üniversite olarak sizlere ulaşabilmemiz ve sizlerinde iş başvurularında bulunduğunuz her yerden özgeçmiş (CV) çıktısı almanıza kolaylık sağlayacaktır.
-                    </p>
-                </div>
-                <div class="col-md-5">
-                    <img class="featurette-image img-fluid mx-auto" src="~/İmg/101.jpg" alt="Generic placeholder image">
-                </div>
-            </div>
 
             <hr class="featurette-divider">
 
-            <div class="row featurette">
-                <div class="col-md-7 order-md-2">
-                    <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                </div>
-                <div class="col-md-5 order-md-1">
-                    <img class="featurette-image img-fluid mx-auto" src="~/İmg/5.jpg" alt="Generic placeholder image">
-                </div>
-            </div>
+            
 
             <hr class="featurette-divider">
 
-            <div class="row featurette">
-                <div class="col-md-7">
-                    <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                </div>
-                <div class="col-md-5">
-                    <img class="featurette-image img-fluid mx-auto" src="~/İmg/1.jpg" alt="Generic placeholder image">
-                </div>
-            </div>
+            
 
             <hr class="featurette-divider">
 
