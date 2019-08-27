@@ -4,8 +4,10 @@ using Abis.Mbs.MvcWebUI.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
-
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
 {
@@ -25,13 +27,13 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
-           
+
 
         }
-       
+
         public IActionResult Index()
         {
-            var users=  _userManager.Users.ToList();
+            var users = _userManager.Users.ToList();
             return View(users);
         }
 
@@ -39,7 +41,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
         {
             var user = new CustomIdentityUser();
 
-            return View();   
+            return View();
         }
         [HttpPost]
         public ActionResult Add(CustomIdentityUser customIdentityUser)
@@ -48,15 +50,25 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
             {
                 _userManager.CreateAsync(customIdentityUser);
             }
-            return RedirectToAction("Index/Registration",new { area = "Admin"}) ;
+            return RedirectToAction("Index/Registration", new { area = "Admin" });
         }
 
-        public ActionResult Update(int UserId)
+        public async Task<ActionResult> Update(string registerId)
         {
             var user = new CustomIdentityUser();
 
-            return View();
-            
+            var roles = _roleManager.Roles.Select(r => new SelectListItem { Text = r.Name, Value = r.Name }).ToList();
+            var userInfo = await _userManager.FindByIdAsync(registerId);
+            var userRolId = await _userManager.GetRolesAsync(userInfo);
+            var model = new RegistrationUpdateViewModel()
+            {
+                UserRolId = userRolId.FirstOrDefault(),
+                UserIdentity = userInfo,
+                Rols = roles
+
+            };
+            return View(model);
+
         }
 
         [HttpPost]

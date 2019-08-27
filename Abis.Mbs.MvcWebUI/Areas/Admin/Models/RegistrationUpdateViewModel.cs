@@ -1,13 +1,13 @@
-﻿using Abis.Mbs.Entities.Concrete;
-using System;
+﻿using Abis.Mbs.MvcWebUI.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Abis.Mbs.MvcWebUI.Areas.Admin.Models
 {
     public class RegistrationUpdateViewModel
     {
-        public REGISTRATION REGISTRATION { get; set; }
+        public string  UserRolId { get; set; }
+        public CustomIdentityUser UserIdentity { get; set; }
+        public IEnumerable<SelectListItem> Rols { get; set; }
     }
 }

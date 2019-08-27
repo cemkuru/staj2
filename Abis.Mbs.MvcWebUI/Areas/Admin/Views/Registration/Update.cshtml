@@ -1,4 +1,4 @@
-﻿@model Abis.Mbs.MvcWebUI.Entities.CustomIdentityUser
+﻿@model Abis.Mbs.MvcWebUI.Areas.Admin.Models.RegistrationUpdateViewModel
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -23,26 +23,44 @@
                             <form asp-area="Admin" asp-controller="Registration" asp-action="Update" method="post">
 
                                 <div class="form-group">
-                                    <label asp-for="UserName"></label>
-                                    <input asp-for="UserName" class="form-control" placeholder="Name" />
-                                    <span asp-validation-for="UserName"></span>
+                                    <label asp-for="UserIdentity.UserName"></label>
+                                    <input asp-for="UserIdentity.UserName" class="form-control" placeholder="Name" />
+                                    <span asp-validation-for="UserIdentity.UserName"></span>
                                 </div>
 
                                 <div class="form-group">
-                                    <label asp-for="NormalizedUserName"></label>
-                                    <input asp-for="NormalizedUserName" class="form-control" placeholder="Username" />
-                                    <span asp-validation-for="NormalizedUserName"></span>
+                                    <label asp-for="UserIdentity.NormalizedUserName"></label>
+                                    <input asp-for="UserIdentity.NormalizedUserName" class="form-control" placeholder="Username" />
+                                    <span asp-validation-for="UserIdentity.NormalizedUserName"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="Email"></label>
-                                    <input asp-for="Email" class="form-control" placeholder="Email" />
-                                    <span asp-validation-for="Email"></span>
+                                    <label asp-for="UserIdentity.Email"></label>
+                                    <input asp-for="UserIdentity.Email" class="form-control" placeholder="Email" />
+                                    <span asp-validation-for="UserIdentity.Email"></span>
                                 </div>
-                               
+                                <div class="form-group">
+                                    <label asp-for="UserIdentity.PhoneNumber"></label>
+                                    <input asp-for="UserIdentity.PhoneNumber" class="form-control" placeholder="" />
+                                    <span asp-validation-for="UserIdentity.PhoneNumber"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserIdentity.AccessFailedCount"></label>
+                                    <label asp-for="UserIdentity.AccessFailedCount" class="form-control" placeholder="" />
+                                    <span asp-validation-for="UserIdentity.AccessFailedCount"></span>
+                                </div>
+                                <div class="form-group-lg">
+                                    <label > Rols </label>
+                                    <select asp-for="UserRolId" asp-items="Model.Rols" class="form-control" />
 
-                                @*<input type="hidden" asp-for="Announcement.AnnouncementId" />*@
+                                </div>
 
-                                <input type="hidden" asp-for="Id" />
+
+
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <input type="hidden" asp-for="UserIdentity.Id" />
                                 <input type="submit" value="Update" class="btn btn-xs btn-success" />
 
                             </form>

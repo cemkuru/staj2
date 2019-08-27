@@ -31,12 +31,6 @@
 
 
   <ItemGroup>
-
-    <Folder Include="Areas\User\Controllers\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <None Include="Areas\Admin\Views\Shared\Components\CartSummary\Default.cshtml" />
     <None Include="Areas\Admin\Views\Shared\Components\CategoryList\Default.cshtml" />
     <None Include="Areas\Admin\Views\Shared\Components\UserSummary\Default.cshtml" />
@@ -75,6 +69,13 @@
     <None Include="wwwroot\lib\vendor\linearicons\fonts\Linearicons-Free.woff2" />
     <None Include="wwwroot\lib\vendor\toastr\toastr.js" />
     <None Include="wwwroot\lib\vendor\toastr\toastr.min.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="Areas\User\Views\Shared\_Layout.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,7 +37,7 @@ namespace Abis.Mbs.MvcWebUI
             //Application job form
             services.AddScoped<IJobFormService, JobFormManager>();
             services.AddScoped<IJobFormDal, EfJobFormDal>();
-            
+
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<IProductDal, EfProductDal>();
             services.AddScoped<ICategoryService, CategoryManager>();
@@ -49,6 +50,9 @@ namespace Abis.Mbs.MvcWebUI
                 .AddEntityFrameworkStores<CustomIdentityDbContext>()
                 .AddDefaultTokenProviders();
             services.AddMvc();
+               
+
+
             services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDistributedMemoryCache();
@@ -94,16 +98,17 @@ namespace Abis.Mbs.MvcWebUI
 
         {
 
-            routeBuilder.MapRoute(name:"areaRoute", template:"{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+            routeBuilder.MapRoute(name: "areaRoute", template: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
 
             routeBuilder.MapRoute(name: "UserareaRoute", template: "{area:exists}/{controller=User}/{action=Job}/{id?}");
 
 
 
+
             routeBuilder.MapRoute(
                 name: "default",
-                template:"{controller=HomePage}/{action=Index}/{id?}");
-            
+                template: "{controller=HomePage}/{action=Index}/{id?}");
+
         }
 
     }
