@@ -20,6 +20,8 @@ namespace Abis.Mbs.DataAccess.Concrete.EntityFramework
         public DbSet<Category> Categories { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<Department> Departments { get; set; }
+
 
         public DbSet<JobForm> JobForms { get; set; }
       

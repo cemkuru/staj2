@@ -1,5 +1,9 @@
 ﻿@model Abis.Mbs.MvcWebUI.Models.AnnouncementListViewModel
 
+
+
+
+
 @{
 
     Layout = null;
@@ -9,6 +13,26 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/node_modules/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="/node_modules/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -22,38 +46,140 @@
     <!-- Bootstrap core CSS -->
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
+
     <!-- Custom styles for this template -->
 
     <link href="~/css/carousel.css" rel="stylesheet" />
     @*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Task', 'Hours per Day'],
-                ['Work', 11],
-                ['Eat', 2],
-                ['Commute', 2],
-                ['Watch TV', 2],
-                ['Sleep', 7]
+        <script type="text/javascript">
+            google.charts.load("current", { packages: ["corechart"] });
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Task', 'Hours per Day'],
+                    ['Work', 11],
+                    ['Eat', 2],
+                    ['Commute', 2],
+                    ['Watch TV', 2],
+                    ['Sleep', 7]
+                ]);
+
+                var options = {
+                    title: 'My Daily Activities',
+                    is3D: true,
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                chart.draw(data, options);
+            }
+        </script>*@
+
+
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+        $(document).ready(function () {
+            //Load Data Here
+            var chartData = null;
+            $.ajax({
+                url: '/Department/GetChartData',
+                type: 'GET',
+                dataType: 'json',
+                data: '',
+                success: function (d) {
+                    chartData = d;
+                },
+                error: function () {
+                    alert('Error!');
+                }
+            }).done(function () {
+                drawColumnChart(chartData);
+            });
+        });
+        function drawColumnChart(d) {
+            var chartData = d;
+            var data = null;
+            data = google.visualization.arrayToDataTable(chartData);
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, {
+                type: 'number',
+                label: data.getColumnLabel(0),
+                calc: function () { return 0; }
+            }
             ]);
-
+            var chart = new google.visualization.ColumnChart($('#divColumnChart')[0]); //returns a HTML DOM Object
             var options = {
-                title: 'My Daily Activities',
-                is3D: true,
+                title: '',
+                legend: 'bottom',
+                colors: ['blue', '#009900'],
+                hAxis: {
+                    title: 'Category',
+                    format: '#'
+                },
+                vAxis: {
+                    minValue: 0,
+                    maxValue: 100000,
+                    title: 'Amount'
+                },
+                chartArea: {
+                    left: 100, top: 50, width: '70%', height: '50%'
+                },
+                animation: {
+                    duration: 1000
+                },
             };
-
-            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-            chart.draw(data, options);
+            var runFirstTime = google.visualization.events.addListener(chart, 'ready', function () {
+                google.visualization.events.removeListener(runFirstTime);
+                chart.draw(data, options);
+            });
+            chart.draw(view, options);
         }
-    </script>*@
+        google.load('visualization', '1', { packages: ['corechart'] });
+    </script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+
+        $(document).ready(function () {
+            //Load Data Here
+            var chartData = null;
+            $.ajax({
+                url: '/Department/GetChartData',
+                type: 'GET',
+                dataType: 'json',
+                data: '',
+                success: function (d) {
+                    chartData = d;
+                },
+                error: function () {
+                    alert('Error!');
+                }
+            }).done(function () {
+                drawPieChart(chartData);
+            });
+        });
+        function drawPieChart(chartData) {
+            var data = google.visualization.arrayToDataTable(chartData);
+            var options = {
+                title: "Department",
+                pointSize: 5,
+                is3D: true
+            };
+            var pieChart = new google.visualization.PieChart(document.getElementById('divPieChart'));
+            pieChart.draw(data, options);
+        }
+        google.load('visualization', '1', { packages: ['corechart'] });
+    </script>
+
+
+
+
+
 </head>
 <body>
 
     <header>
         <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color:white">
-            <a class="navbar-brand" asp-controller="HomePage" asp-action="Index" ><img src="~/İmg/999999.jpg" style="height:80px; margin:5px 5px 5px 0;" />Mezun Bilgi Sistemi</a>
+            <a class="navbar-brand" asp-controller="HomePage" asp-action="Index"><img src="~/İmg/999999.jpg" style="height:80px; margin:5px 5px 5px 0;" />Mezun Bilgi Sistemi</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -94,8 +220,8 @@
 
 
                     @*<li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-        </li>*@
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </li>*@
                 </ul>
                 <form class="form-inline mt-2 mt-md-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -165,51 +291,66 @@
             <!-- Three columns of text below the carousel -->
             <div class="row" style="width:1150px;">
                 <div class="col-xs-12 col-lg-7" style="width:730px;">
-                    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+                    @*<div id="piechart_3d" style="width: 900px; height: 500px;"></div>*@
+
+
+                    <br />
+
+                    <div id="divColumnChart" style="width:600px; height:300px">
+                    </div>
+                    <div id="divPieChart" style="width:600px; height:300px">
+                    </div>
+
+
+
+
+
                 </div>
                 <div class="col-xs-12 col-lg-5" style="width:380px; padding-left:60px;">
-                    <div class="clearfix">
-                        <h2 class="title">Duyurular</h2>
-                    </div>
-                    @foreach (var announcement in Model.Announcements)
-                    {
-                        <div class="row" style="width:470px; padding-top:20px;">
-                            @*<div class="col-xs-12 col-lg-12" style="color:black">*@
-                            <img class="rounded-circle" src="~/İmg/999999.jpg" alt="Generic placeholder image" width="120" height="120">
-                            <div style="float:right; width:345px;">
-                                <span class="date">@Html.DisplayFor(modelItem => announcement.ACreateDate)</span>
-                                <h5>@announcement.ATitle</h5>
-                                <p>@announcement.ADescription</p>
-                                <p><a class="btn btn-secondary" asp-action="Details" asp-route-id="@announcement.AnnouncementId" role="button">İncele &raquo;</a></p>
+                        <div class="clearfix">
+                            <h2 class="title">Duyurular</h2>
+                        </div>
+                        @foreach (var announcement in Model.Announcements)
+                        {
+                            <div class="row" style="width:470px; padding-top:20px;">
+                                <img class="rounded-circle" src="~/İmg/999999.jpg" alt="Generic placeholder image" width="120" height="120">
+                                <div style="float:right; width:345px;">
+                                    <span class="date">@Html.DisplayFor(modelItem => announcement.ACreateDate)</span>
+                                    <h5>@announcement.ATitle</h5>
+                                    <p>@announcement.ADescription</p>
+                                    <p><a class="btn btn-secondary" asp-action="Details" asp-route-id="@announcement.AnnouncementId" role="button">İncele &raquo;</a></p>
+                                </div>
+
                             </div>
+                        }
+                        <div class="btn-wrap clearfix">
+                            <a class="btn btn-lg btn-dark" asp-area="User" asp-controller="Announcement" asp-action="Index" role="button" style="margin-left:160px; margin-top:20px;">Tüm Duyurular</a>
+
 
                         </div>
-                    }
-                    <div class="btn-wrap clearfix">
-                        <a class="btn btn-lg btn-dark" asp-area="User" asp-controller="Announcement" asp-action="Index" role="button" style="margin-left:160px; margin-top:20px;">Tüm Duyurular</a>
-
-
                     </div>
-                </div>
-
-               
-
-            <hr class="featurette-divider">
 
 
-            <hr class="featurette-divider">
 
-            
+                <hr class="featurette-divider">
 
-            <hr class="featurette-divider">
 
-            
+                <hr class="featurette-divider">
 
-            <hr class="featurette-divider">
 
-            <!-- /END THE FEATURETTES -->
 
-        </div><!-- /.container -->
+                <hr class="featurette-divider">
+
+
+
+                <hr class="featurette-divider">
+
+                <!-- /END THE FEATURETTES -->
+
+            </div>
+        </div>
+
+        <!-- /.container -->
         <!-- FOOTER -->
         <footer class="container">
             <p class="float-right"><a href="#">Back to top</a></p>
@@ -228,7 +369,24 @@
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="../../assets/js/vendor/holder.min.js"></script>
 
-
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
 
 </body>
 </html>
