@@ -1,26 +1,44 @@
-﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.AnnouncementListViewModel
+﻿@model Abis.Mbs.MvcWebUI.Areas.Admin.Models.ReportViewModel
+
 @{
     ViewBag.Title = "title";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<!-- MAIN CONTENT -->
 <div class="main-content">
     <div class="container-fluid">
         <!-- OVERVIEW -->
         <div class="panel panel-headline">
-            <div class="panel-heading">
-                <h3 class="panel-title">Duyuru Listesi-> Admin Panel </h3>
-               
-            </div>
+            
             <div class="panel-body">
-               
+
+                <div class="col-md-3">
+                    <div class="metric">
+                        <span class="icon"><i class="fa fa-plus"></i></span>
+                        <p>
+                            <span class="number">@Model.JobCount</span>
+                            <span class="title">Jobs</span>
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="metric">
+                        <span class="icon"><i class="fa fa-bullhorn"></i></span>
+                        <p>
+                            <span class="number">@Model.AnnouncementCount</span>
+                            <span class="title">Announcements</span>
+                        </p>
+
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
         <!-- END OVERVIEW -->
-      
+
     </div>
 </div>
-
-
-

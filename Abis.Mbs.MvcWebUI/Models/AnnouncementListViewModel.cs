@@ -9,5 +9,7 @@ namespace Abis.Mbs.MvcWebUI.Models
         public int PageCount { get; internal set; }
         public int PageSize { get; internal set; }
         public int CurrentPage { get; internal set; }
+        public List<DepartmentModel> departmentModels { get; set; }
+
     }
 }

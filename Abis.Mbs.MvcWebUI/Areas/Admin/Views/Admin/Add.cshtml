@@ -5,43 +5,5 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Add a announcement</h1>
-
-<!-- MAIN CONTENT -->
-<div class="main-content">
-    <div class="container-fluid">
-        <!-- OVERVIEW -->
-        <div class="panel panel-headline">
-            <div class="panel-heading">
-                <h3 class="panel-title">Duyuru Listesi-> Admin Panel </h3>
-
-            </div>
-            <div class="panel-body">
-                <form asp-area="Admin" asp-controller="Admin" asp-action="Add" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label asp-for="Announcement.ATitle"></label>
-                        <input asp-for="Announcement.ATitle" class="form-control" placeholder="Announcement Title" />
-                        <span asp-validation-for="Announcement.ATitle"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Announcement.ADescription"></label>
-                        <input asp-for="Announcement.ADescription" class="form-control" placeholder="Announcement Description" />
-                        <span asp-validation-for="Announcement.ADescription"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Announcement.ACreateDate" class="control-label"></label>
-                        <input asp-for="Announcement.ACreateDate" class="form-control" />
-                        <span asp-validation-for="Announcement.ACreateDate" class="text-danger"></span>
-                    </div>
-                    
-
-                    <input type="submit" value="Add" class="btn btn-xs btn-success" />
-
-                </form>
-            </div>
-        </div>
-        <!-- END OVERVIEW -->
-
-    </div>
-</div>
+<h1>Admin/Add</h1>
 

@@ -9,6 +9,7 @@ namespace Abis.Mbs.MvcWebUI.Entities
 {
     public class CustomIdentityRole : IdentityRole
     {
+      
         //
     }
 }

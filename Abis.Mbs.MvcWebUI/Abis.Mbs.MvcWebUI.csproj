@@ -22,17 +22,12 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\Abis.Mbs.Business\Abis.Mbs.Business.csproj" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-
-    <Folder Include="Areas\User\Controllers\" />
   </ItemGroup>
 
 
@@ -75,6 +70,13 @@
     <None Include="wwwroot\lib\vendor\linearicons\fonts\Linearicons-Free.woff2" />
     <None Include="wwwroot\lib\vendor\toastr\toastr.js" />
     <None Include="wwwroot\lib\vendor\toastr\toastr.min.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="Areas\User\Views\Shared\_Layout.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

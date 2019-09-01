@@ -1,0 +1,42 @@
+﻿@model Abis.Mbs.MvcWebUI.Models.DepartmentModel
+@{
+    ViewBag.Title = "PieChart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Pie Chart</h2>
+<br />
+<div id="divPieChart" style="width:600px; height:300px">
+</div>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+
+   $(document).ready(function () {
+     //Load Data Here
+     var chartData = null;
+     $.ajax({
+       url: '/HomePage/GetChartData',
+       type: 'GET',
+       dataType: 'json',
+       data: '',
+       success: function (d) {
+         chartData = d;
+       },
+       error: function () {
+         alert('Error!');
+       }
+     }).done(function () {
+       drawPieChart(chartData);
+     });
+   });
+   function drawPieChart(chartData) {
+     var data = google.visualization.arrayToDataTable(chartData);
+     var options = {
+       title: "Category",
+       pointSize: 5,
+       is3D: true
+     };
+     var pieChart = new google.visualization.PieChart(document.getElementById('divPieChart'));
+     pieChart.draw(data, options);
+   }
+   google.load('visualization', '1', { packages: ['corechart'] });
+</script>

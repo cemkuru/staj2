@@ -6,8 +6,7 @@ using System.Text;
 
 namespace Abis.Mbs.DataAccess.Abstract
 {
-    public interface IAnnouncementDal : IEntityRepository<Announcement>
+     public interface IRegistrationDal : IEntityRepository<REGISTRATION>
     {
-        
     }
 }

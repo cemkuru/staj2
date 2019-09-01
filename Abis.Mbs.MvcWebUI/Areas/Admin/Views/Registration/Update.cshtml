@@ -1,0 +1,76 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.Admin.Models.RegistrationUpdateViewModel
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="panel panel-headline">
+
+    <h2>Update User</h2>
+
+    <div class="main-content">
+        <div class="container-fluid">
+            <!-- OVERVIEW -->
+            <div class="panel panel-headline">
+
+                <div class="wrapper">
+                    <div class="inner">
+
+                        <div class="panel-body">
+
+                            <form asp-area="Admin" asp-controller="Registration" asp-action="Update" method="post">
+
+                                <div class="form-group">
+                                    <label asp-for="UserIdentity.UserName"></label>
+                                    <input asp-for="UserIdentity.UserName" class="form-control" placeholder="Name" />
+                                    <span asp-validation-for="UserIdentity.UserName"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="UserIdentity.NormalizedUserName"></label>
+                                    <input asp-for="UserIdentity.NormalizedUserName" class="form-control" placeholder="Username" />
+                                    <span asp-validation-for="UserIdentity.NormalizedUserName"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserIdentity.Email"></label>
+                                    <input asp-for="UserIdentity.Email" class="form-control" placeholder="Email" />
+                                    <span asp-validation-for="UserIdentity.Email"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserIdentity.PhoneNumber"></label>
+                                    <input asp-for="UserIdentity.PhoneNumber" class="form-control" placeholder="" />
+                                    <span asp-validation-for="UserIdentity.PhoneNumber"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserIdentity.AccessFailedCount"></label>
+                                    <label asp-for="UserIdentity.AccessFailedCount" class="form-control" placeholder="" />
+                                    <span asp-validation-for="UserIdentity.AccessFailedCount"></span>
+                                </div>
+                                <div class="form-group-lg">
+                                    <label > Rols </label>
+                                    <select asp-for="UserRolId" asp-items="Model.Rols" class="form-control" />
+
+                                </div>
+
+
+
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <input type="hidden" asp-for="UserIdentity.Id" />
+                                <input type="submit" value="Update" class="btn btn-xs btn-success" />
+
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
