@@ -9,6 +9,6 @@ namespace Abis.Mbs.MvcWebUI.Entities
 {
     public class CustomIdentityUser : IdentityUser
     {
-        //
+        
     }
 }

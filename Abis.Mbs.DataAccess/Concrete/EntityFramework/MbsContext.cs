@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Abis.Mbs.Entities.Concrete;
+using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Abis.Mbs.DataAccess.Concrete.EntityFramework
 {
@@ -20,9 +22,9 @@ namespace Abis.Mbs.DataAccess.Concrete.EntityFramework
         public DbSet<Category> Categories { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Job> Jobs { get; set; }
-
         public DbSet<JobForm> JobForms { get; set; }
-      
+        public DbSet<UserProfile> UserProfiles { get; set; }
+
 
 
     }

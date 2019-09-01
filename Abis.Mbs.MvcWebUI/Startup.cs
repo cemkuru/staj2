@@ -30,6 +30,8 @@ namespace Abis.Mbs.MvcWebUI
             services.AddScoped<IJobService, JobManager>();
             services.AddScoped<IJobDal, EfJobDal>();
 
+           
+
             //Application job form
 
             services.AddScoped<IJobFormService, JobFormManager>();
@@ -37,10 +39,17 @@ namespace Abis.Mbs.MvcWebUI
             
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<IProductDal, EfProductDal>();
+
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
+
             services.AddSingleton<ICartSessionService, CartSessionService>();
             services.AddScoped<ICartService, CartService>();
+
+            // UserProfile Service and Data Access Layers
+            services.AddScoped<IUserProfileService, UserProfileManager>();
+            services.AddScoped<IUserProfileDal, EfUserProfileDal>();
+
             services.AddDbContext<CustomIdentityDbContext>
             (options => options.UseSqlServer("Data Source=abisstaj2019.database.windows.net;Database=mbs_2019;User ID=Abisstaj2019;Password=Chha4773;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
             services.AddIdentity<CustomIdentityUser, CustomIdentityRole>()

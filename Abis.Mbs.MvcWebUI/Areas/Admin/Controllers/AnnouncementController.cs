@@ -82,6 +82,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
 
             return RedirectToAction("Index", new { area = "Admin" });
         }
+
         public ActionResult Delete(int announcementId)
         {
             _announcementService.Delete(announcementId);
