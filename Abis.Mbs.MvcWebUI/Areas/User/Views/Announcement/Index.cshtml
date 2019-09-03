@@ -20,7 +20,7 @@
                     <p class="date">@Html.DisplayFor(modelItem => announcement.ACreateDate)</p>
                     <h2>@announcement.ATitle</h2>
                     <p>@announcement.ADescription</p>
-                    <p><a class="btn btn-secondary" asp-area="User" asp-action="Detial" asp-route-id="@announcement.AnnouncementId" role="button">İncele &raquo;</a></p>
+                    <p><a class="btn btn-secondary" asp-controller="Announcement" asp-area="User" asp-action="Detial" asp-route-id="@announcement.AnnouncementId" role="button">İncele &raquo;</a></p>
 
                 </div>
             }
