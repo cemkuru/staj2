@@ -88,13 +88,13 @@
                 legend: 'bottom',
                 colors: ['blue', '#009900'],
                 hAxis: {
-                    title: 'Category',
+                    title: 'Bölüm',
                     format: '#'
                 },
                 vAxis: {
                     minValue: 0,
                     maxValue: 100000,
-                    title: 'Amount'
+                    title: 'Mezun Sayısı'
                 },
                 chartArea: {
                     left: 100, top: 50, width: '70%', height: '50%'
@@ -135,7 +135,7 @@
         function drawPieChart(chartData) {
             var data = google.visualization.arrayToDataTable(chartData);
             var options = {
-                title: "Department",
+                title: "Bölümlere göre mezunların dağılımı",
                 pointSize: 5,
                 is3D: true
             };
