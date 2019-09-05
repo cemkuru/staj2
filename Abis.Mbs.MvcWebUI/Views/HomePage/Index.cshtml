@@ -169,11 +169,11 @@
 
 
                     @*<p>
-                            Log-in icon as a link:
-                            <a href="#">
-                                <span class="glyphicon glyphicon-log-in"></span>
-                            </a>
-                        </p>*@
+                Log-in icon as a link:
+                <a href="#">
+                    <span class="glyphicon glyphicon-log-in"></span>
+                </a>
+            </p>*@
 
                     @* Job Announcement button *@
                     @if (User.Identity.IsAuthenticated)
@@ -182,7 +182,7 @@
                         {
 
                             <li class="nav-item active">
-                                <a class="nav-link" asp-area="User" asp-controller="Job" asp-action="Index">Jobs<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" asp-area="User" asp-controller="Job" asp-action="Index">Kariyer<span class="sr-only">(current)</span></a>
                             </li>
                         }
 
@@ -202,16 +202,20 @@
 
 
 
-                    @*<li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
-                        </li>*@
                 </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="@Url.Action("LogOff","Account")"><i class="lnr lnr-exit"></i> <span>Çıkış Yap</span></a></li>
 
-              
-                <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                </ul>
+                }
+
+
+                @*<form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>*@
             </div>
         </nav>
     </header>
@@ -338,7 +342,7 @@
         <!-- /.container -->
         <!-- FOOTER -->
         <footer class="container">
-            <p class="float-right"><a href="#">Back to top</a></p>
+            <p class="float-right"><a href="#">Yukarı Git</a></p>
             <p>&copy; 2018-2019 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
         </footer>
     </main>
