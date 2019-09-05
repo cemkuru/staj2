@@ -20,8 +20,7 @@ namespace Abis.Mbs.Entities.Concrete
         [DataType(DataType.Date)]
         public DateTime? ACreateDate { get; set; }
 
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
-        //public DateTime? ACreateDate2 { get; set; }
+      
 
         //[Display(Name = "APhoto")]
         //public byte[] APhoto { get; set; }
