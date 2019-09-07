@@ -11,15 +11,42 @@ namespace Abis.Mbs.Entities.Concrete
         public int JobID { get; set; }
 
         [Required]
-        public string PostTitle { get; set; }
+        public string Department { get; set; }
 
         [Required]
-        public string Area { get; set; }
+        public string WorkType { get; set; }
 
         [Required]
-        public string Country { get; set; }
+        public string Position { get; set; }
 
         [Required]
         public string City { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? Date { get; set; }
+
+        [Required]
+        public string Education { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        [Required]
+        public string Company { get; set; }
+
+        [Required]
+        public long Telephone { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+
+        [Required]
+        public string Experience { get; set; }
+
+        [Required]
+        public string EducationLevel { get; set; }
+
+
+
     }
 }

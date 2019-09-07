@@ -1,4 +1,5 @@
-﻿@*@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobListViewModel
+﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobListViewModel
+@*@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobListViewModel
     @{
         ViewData["Title"] = "Index";
         Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
@@ -107,35 +108,72 @@
 
 
                 </ul>
-               
+
             </div>
         </nav>
     </header>
 
-    <main role="main">
+    <main role="main" style="margin-top:30px;">
+        <div class="container">
 
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>              
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="first-slide" src="~/img/job-3.jpg" alt="First slide">
-                    <div class="container">
-                        <div class="carousel-caption text-right">
-                            <h3>Hayalindeki işi bulabilirsin</h3>
-                            <p><a class="btn btn-lg btn-primary" asp-area="User" asp-controller="JobForm" asp-action="AddJobForm">Apply Now</a></p>
-                        </div>
+            <div class="table-wrapper">
+
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-12"><h2>Meslek Listesi </h2></div>
+
                     </div>
-                </div>                
+                </div>
+
+                @*<a class="btn btn-xs btn-success" asp-area="Admin" asp-controller="Job" asp-action="Add">Add a new Job</a>*@
+
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+
+                            <th>Departman </th>
+                            <th>Çalışma Şekli</th>
+                            <th>Pozisyon </th>
+                            <th>Şehir</th>
+                            <th>İlan Tarihi</th>
+
+                        </tr>
+                    </thead>
+
+
+                    @foreach (var job in Model.Jobs)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>@job.Department</td>
+                                <td>@job.WorkType</td>
+                                <td>@job.Position</td>
+                                <td>@job.City</td>
+                                <td>@Html.DisplayFor(modelItem => job.Date)</td>
+
+                                <td><a class="btn btn-secondary" asp-action="Details" asp-route-id="@job.JobID" role="button">İncele &raquo;</a></td>
+
+                                @*<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>*@
+
+
+                                @*<td><a class="btn btn-xs btn-info" asp-area="Admin" asp-controller="Job" asp-action="Update" asp-route-JobID="@job.JobID">Update</a></td>
+        <td><a class="btn btn-xs btn-danger" asp-area="Admin" asp-controller="Job" asp-action="Delete" asp-route-JobID="@job.JobID">Delete</a></td>*@
+                            </tr>
+                        </tbody>
+                    }
+                </table>
             </div>
-            
+
+
         </div>
 
 
-       
+        </div>
 
-        
+
+
+
+
         <!-- FOOTER -->
         <footer class="container">
             <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>

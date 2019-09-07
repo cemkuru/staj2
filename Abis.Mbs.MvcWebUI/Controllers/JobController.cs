@@ -28,7 +28,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
             if (!string.IsNullOrEmpty(searchString))
             {
 
-                jobList.Jobs.AddRange(_jobService.GetAll().Where(w => w.Area.ToLower().Contains(searchString.ToLower())));
+                jobList.Jobs.AddRange(_jobService.GetAll().Where(w => w.Position.ToLower().Contains(searchString.ToLower())));
             }
             else
             {
