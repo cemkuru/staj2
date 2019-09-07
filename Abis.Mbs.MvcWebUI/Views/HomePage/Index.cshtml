@@ -184,20 +184,23 @@
                             <li class="nav-item active">
                                 <a class="nav-link" asp-area="User" asp-controller="Job" asp-action="Index">Kariyer<span class="sr-only">(current)</span></a>
                             </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="User" asp-controller="UserProfile" asp-action="Details">Profile<span class="sr-only">(current)</span></a>
+                            </li>
                         }
 
                         @if (User.IsInRole("Admin"))
                         {
                             @* Job Announcement button *@
                             @*<li class="nav-item active">
-                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobIndex">Update/Delete Jobs<span class="sr-only">(current)</span></a>
-                            </li>*@
+                    <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobIndex">Update/Delete Jobs<span class="sr-only">(current)</span></a>
+                </li>*@
                             <li class="nav-item active">
                                 <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Index">Yönetici Paneli<span class="sr-only">(current)</span></a>
                             </li>
                             @*<li class="nav-item active">
-                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobFormIndex">Job Form Application<span class="sr-only">(current)</span></a>
-                            </li>*@
+                    <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobFormIndex">Job Form Application<span class="sr-only">(current)</span></a>
+                </li>*@
                         }
                     }
 
