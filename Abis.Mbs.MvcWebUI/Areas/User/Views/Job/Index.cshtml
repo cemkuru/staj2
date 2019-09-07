@@ -1,4 +1,5 @@
-﻿@*@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobListViewModel
+﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobListViewModel
+@*@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobListViewModel
     @{
         ViewData["Title"] = "Index";
         Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
@@ -68,17 +69,17 @@
 
     <header>
         <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color:white">
-            <a class="navbar-brand" asp-controller="HomePage" asp-action="Index"><img src="~/İmg/999999.jpg" style="height:80px; margin:5px 5px 5px 0;" />Mezun Bilgi Sistemi</a>
+            <a class="navbar-brand" asp-area="" asp-controller="HomePage" asp-action="Index"><img src="~/İmg/999999.jpg" style="height:80px; margin:5px 5px 5px 0;" />Mezun Bilgi Sistemi</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" asp-controller="HomePage" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" asp-area="" asp-controller="HomePage" asp-action="Index">Ana Sayfa <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" asp-controller="Account" asp-action="Login">Admin<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Giriş<span class="sr-only">(current)</span></a>
                     </li>
 
                     @* Job Announcement button *@
@@ -88,7 +89,7 @@
                         {
 
                             <li class="nav-item active">
-                                <a class="nav-link" asp-area="User" asp-controller="Job" asp-action="Index">Find job<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" asp-area="User" asp-controller="JobForm" asp-action="AddJobForm">Find job<span class="sr-only">(current)</span></a>
                             </li>
                         }
 
@@ -106,51 +107,73 @@
 
 
 
-
-
-                    @*<li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
-                        </li>*@
                 </ul>
-                <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+
             </div>
         </nav>
     </header>
 
-    <main role="main">
+    <main role="main" style="margin-top:30px;">
+        <div class="container">
 
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>              
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="first-slide" src="~/img/job-3.jpg" alt="First slide">
-                    <div class="container">
-                        <div class="carousel-caption text-right">
-                            <h3>Find your dream job</h3>
-                            <p><a class="btn btn-lg btn-primary" asp-area="User" asp-controller="JobForm" asp-action="AddJobForm">Apply Now</a></p>
-                        </div>
+            <div class="table-wrapper">
+
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-12"><h2>Meslek Listesi </h2></div>
+
                     </div>
-                </div>                
+                </div>
+
+                @*<a class="btn btn-xs btn-success" asp-area="Admin" asp-controller="Job" asp-action="Add">Add a new Job</a>*@
+
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+
+                            <th>Departman </th>
+                            <th>Çalışma Şekli</th>
+                            <th>Pozisyon </th>
+                            <th>Şehir</th>
+                            <th>İlan Tarihi</th>
+
+                        </tr>
+                    </thead>
+
+
+                    @foreach (var job in Model.Jobs)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>@job.Department</td>
+                                <td>@job.WorkType</td>
+                                <td>@job.Position</td>
+                                <td>@job.City</td>
+                                <td>@Html.DisplayFor(modelItem => job.Date)</td>
+
+                                <td><a class="btn btn-secondary" asp-action="Details" asp-route-id="@job.JobID" role="button">İncele &raquo;</a></td>
+
+                                @*<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>*@
+
+
+                                @*<td><a class="btn btn-xs btn-info" asp-area="Admin" asp-controller="Job" asp-action="Update" asp-route-JobID="@job.JobID">Update</a></td>
+        <td><a class="btn btn-xs btn-danger" asp-area="Admin" asp-controller="Job" asp-action="Delete" asp-route-JobID="@job.JobID">Delete</a></td>*@
+                            </tr>
+                        </tbody>
+                    }
+                </table>
             </div>
-            
+
+
         </div>
 
 
-        <!-- Marketing messaging and featurettes
-        ================================================== -->
-        <!-- Wrap the rest of the page in another container to center all the content. -->
-
-        
-
-               
+        </div>
 
 
-        
+
+
+
         <!-- FOOTER -->
         <footer class="container">
             <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>

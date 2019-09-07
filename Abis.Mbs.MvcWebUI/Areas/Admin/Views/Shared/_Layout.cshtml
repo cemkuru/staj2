@@ -6,31 +6,7 @@
 </head>
 <body>
     <header>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Abis.Mbs.MvcWebUI</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
-                            @await Component.InvokeAsync("UserSummary")
-                        </li>
-                    </ul>
-                </div>
-            </nav>*@
+       
     </header>
 
     <!-- WRAPPER -->
@@ -38,7 +14,8 @@
         <!-- NAVBAR -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="brand">
-                <a href="index.html"><img src="~/img/mbsLogo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+                <a class="nav-link" asp-area="" asp-controller="HomePage" asp-action="Index">Mezun Bilgi Sistemi <span class="sr-only">(current)</span></a>
+
             </div>
             <div class="container-fluid">
                 <div class="navbar-btn">
@@ -50,14 +27,17 @@
                     <div id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>User</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Kullanıcı</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
 
                                     <li><a href="#"><span>@await Component.InvokeAsync("UserSummary")</span></a></li>
-                                    <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-                                    <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-                                    <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-                                    <li><a href="@Url.Action("LogOff","Account")"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+                                    <li><a href="#"><i class="lnr lnr-user"></i> <span>Profilim</span></a></li>
+                                    <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Mesajlar</span></a></li>
+                                    <li><a href="#"><i class="lnr lnr-cog"></i> <span>Ayarlar</span></a></li>
+                                    <li>
+                                        <a href="@Url.Action("LogOff","Account",new { area="" })"><i class="lnr lnr-exit"></i> <span>Çıkış</span></a>                            
+                                    </li>
+
                                 </ul>
                             </li>
                             
@@ -75,13 +55,13 @@
                     <ul class="nav">
 
 
-                        <li><a href="index.html" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                        <li><a asp-area="Admin" asp-controller="Admin" asp-action="Index" class="active"><i class="lnr lnr-home"></i> <span>Yönetici Paneli</span></a></li>
                         <li>
                             <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-bullhorn"></i> <span>Duyuru Düzenle</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                             <div id="subPages" class="collapse ">
                                 <ul class="nav">
                                     <li><a href="@Url.Action("Add","Announcement")" class="">Duyuru Ekle</a></li>
-                                    <li><a href="@Url.Action("Index","Announcement")" class="">Duyuru Sil/Gücelle</a></li>
+                                    <li><a href="@Url.Action("Index","Announcement")" class="">Duyuru Sil/Düzenle</a></li>
 
                                 </ul>
                             </div>

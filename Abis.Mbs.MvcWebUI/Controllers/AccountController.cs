@@ -164,6 +164,8 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
+
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
@@ -176,7 +178,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Homepage");
+                    return RedirectToAction("Index", "HomePage");
                 }
 
                 ModelState.AddModelError("", "Invalid login!");
@@ -189,7 +191,7 @@ namespace Abis.Mbs.MvcWebUI.Controllers
         public ActionResult LogOff()
         {
             _signInManager.SignOutAsync().Wait();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","HomePage");
 
         }
 

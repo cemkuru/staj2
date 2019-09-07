@@ -18,7 +18,7 @@
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
-                <div class="col-sm-12"><h2>Meslek <b>Listesi</b></h2></div>
+                <div class="col-sm-12"><h2>Meslek Listesi </h2></div>
 
             </div>
         </div>
@@ -29,10 +29,23 @@
             <thead>
                 <tr>
 
-                    <th>Post <i class="fa fa-sort"></i></th>
-                    <th>Area</th>
-                    <th>Country <i class="fa fa-sort"></i></th>
+                    <th>Departman </th>
+                    <th>Çalışma Şekli</th>
+                    <th>Pozisyon </th>
                     <th>City</th>
+                    <th>Tarih</th>
+                    <th>Üniversite Bölümü</th>
+                    <th>Açıklama</th>
+                    <th>Şirket</th>
+                    <th>Telefon</th>
+                    <th>Adres</th>
+                    <th>Deneyim</th>
+                    <th>Eğitim Seviyesi</th>
+
+
+
+
+
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -42,10 +55,24 @@
                 {
                 <tbody>
                     <tr>
-                        <td>@job.PostTitle</td>
-                        <td>@job.Area</td>
-                        <td>@job.Country</td>
+                        <td>@job.Department</td>
+                        <td>@job.WorkType</td>
+                        <td>@job.Position</td>
                         <td>@job.City</td>
+                        <td>@Html.DisplayFor(modelItem => job.Date)</td>
+                        <td>@job.Education</td>
+                        <td>@job.Description</td>
+                        <td>@job.Company</td>
+                        <td>@job.Telephone</td>
+                        <td>@job.Address</td>
+                        <td>@job.Experience</td>
+                        <td>@job.EducationLevel</td>
+
+
+
+
+
+
 
                         @*<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>*@
                         <td>
@@ -54,7 +81,7 @@
                         </td>
 
                         @*<td><a class="btn btn-xs btn-info" asp-area="Admin" asp-controller="Job" asp-action="Update" asp-route-JobID="@job.JobID">Update</a></td>
-                            <td><a class="btn btn-xs btn-danger" asp-area="Admin" asp-controller="Job" asp-action="Delete" asp-route-JobID="@job.JobID">Delete</a></td>*@
+        <td><a class="btn btn-xs btn-danger" asp-area="Admin" asp-controller="Job" asp-action="Delete" asp-route-JobID="@job.JobID">Delete</a></td>*@
                     </tr>
              </tbody>
             }

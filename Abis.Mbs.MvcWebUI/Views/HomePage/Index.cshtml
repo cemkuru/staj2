@@ -1,9 +1,8 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject UserManager<Abis.Mbs.MvcWebUI.Entities.CustomIdentityUser> UserManager
-@inject SignInManager<Abis.Mbs.MvcWebUI.Entities.CustomIdentityUser> SignInManager
-@*@inject UserManager<Abis.Mbs.Entities.Concrete.ApplicationUser> UserManager*@
-@*@inject SignInManager<Abis.Mbs.Entities.Concrete.ApplicationUser> SignInManager*@
-@model Abis.Mbs.MvcWebUI.Models.AnnouncementListViewModel
+﻿@model Abis.Mbs.MvcWebUI.Models.AnnouncementListViewModel
+
+
+
+
 
 @{
 
@@ -14,39 +13,167 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+   
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+
+    
+
 
     <title>Mezun Bilgi Sistemi</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/carousel/">
 
     <!-- Bootstrap core CSS -->
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
 
     <link href="~/css/carousel.css" rel="stylesheet" />
+
+
+
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+        $(document).ready(function () {
+            //Load Data Here
+            var chartData = null;
+            $.ajax({
+                url: '/Department/GetChartData',
+                type: 'GET',
+                dataType: 'json',
+                data: '',
+                success: function (d) {
+                    chartData = d;
+                },
+                error: function () {
+                    alert('Error!');
+                }
+            }).done(function () {
+                drawColumnChart(chartData);
+            });
+        });
+        function drawColumnChart(d) {
+            var chartData = d;
+            var data = null;
+            data = google.visualization.arrayToDataTable(chartData);
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, {
+                type: 'number',
+                label: data.getColumnLabel(0),
+                calc: function () { return 0; }
+            }
+            ]);
+            var chart = new google.visualization.ColumnChart($('#divColumnChart')[0]); //returns a HTML DOM Object
+            var options = {
+                title: '',
+                legend: 'bottom',
+                colors: ['blue', '#009900'],
+                hAxis: {
+                    title: 'Bölüm',
+                    format: '#'
+                },
+                vAxis: {
+                    minValue: 0,
+                    maxValue: 100000,
+                    title: 'Mezun Sayısı'
+                },
+                chartArea: {
+                    left: 100, top: 50, width: '70%', height: '50%'
+                },
+                animation: {
+                    duration: 1000
+                },
+            };
+            var runFirstTime = google.visualization.events.addListener(chart, 'ready', function () {
+                google.visualization.events.removeListener(runFirstTime);
+                chart.draw(data, options);
+            });
+            chart.draw(view, options);
+        }
+        google.load('visualization', '1', { packages: ['corechart'] });
+    </script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+
+        $(document).ready(function () {
+            //Load Data Here
+            var chartData = null;
+            $.ajax({
+                url: '/Department/GetChartData',
+                type: 'GET',
+                dataType: 'json',
+                data: '',
+                success: function (d) {
+                    chartData = d;
+                },
+                error: function () {
+                    alert('Error!');
+                }
+            }).done(function () {
+                drawPieChart(chartData);
+            });
+        });
+        function drawPieChart(chartData) {
+            var data = google.visualization.arrayToDataTable(chartData);
+            var options = {
+                title: "Bölümlere göre mezunların dağılımı",
+                pointSize: 5,
+                is3D: true
+            };
+            var pieChart = new google.visualization.PieChart(document.getElementById('divPieChart'));
+            pieChart.draw(data, options);
+        }
+        google.load('visualization', '1', { packages: ['corechart'] });
+    </script>
+
+
+
+
+
 </head>
 <body>
 
     <header>
         <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color:white">
-            <a class="navbar-brand" asp-controller="HomePage" asp-action="Index"><img src="~/İmg/999999.jpg" style="height:80px; margin:5px 5px 5px 0;" />Mezun Bilgi Sistemi</a>
+            <a class="navbar-brand" asp-controller="HomePage" asp-action="Index"><img src="~/İmg/999999.jpg" style="height:60px; margin:5px 5px 5px 0;" />Mezun Bilgi Sistemi</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" asp-controller="HomePage" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" asp-controller="HomePage" asp-action="Index">Ana Sayfa <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" asp-controller="Account" asp-action="Login">Admin<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" asp-controller="Account" asp-action="Login">Giriş<span class="sr-only">(current)</span></a>
                     </li>
+
+
+                    @*<p>
+            Log-in icon as a link:
+            <a href="#">
+                <span class="glyphicon glyphicon-log-in"></span>
+            </a>
+        </p>*@
 
                     @* Job Announcement button *@
                     @if (User.Identity.IsAuthenticated)
@@ -55,22 +182,22 @@
                         {
 
                             <li class="nav-item active">
-                                <a class="nav-link" asp-area="User" asp-controller="Job" asp-action="Index">Jobs<span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" asp-area="User" asp-controller="UserProfile" asp-action="Details">My Profile<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" asp-area="User" asp-controller="Job" asp-action="Index">Kariyer<span class="sr-only">(current)</span></a>
                             </li>
                         }
 
                         @if (User.IsInRole("Admin"))
                         {
                             @* Job Announcement button *@
-                            <li class="nav-item active">
+                            @*<li class="nav-item active">
                                 <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobIndex">Update/Delete Jobs<span class="sr-only">(current)</span></a>
-                            </li>
+                            </li>*@
                             <li class="nav-item active">
-                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobFormIndex">Job Form Application<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Index">Yönetici Paneli<span class="sr-only">(current)</span></a>
                             </li>
+                            @*<li class="nav-item active">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobFormIndex">Job Form Application<span class="sr-only">(current)</span></a>
+                            </li>*@
                         }
                     }
 
@@ -78,14 +205,20 @@
 
 
 
-                    @*<li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
-                        </li>*@
                 </ul>
-                <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                @if (User.Identity.IsAuthenticated)
+                {
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="@Url.Action("LogOff","Account")"><i class="lnr lnr-exit"></i> <span>Çıkış Yap</span></a></li>
+
+                </ul>
+                }
+
+
+                @*<form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>*@
             </div>
         </nav>
     </header>
@@ -115,7 +248,7 @@
                         <div class="carousel-caption">
                             <h1>Mezun Kahvaltısı</h1>
                             <p>Mezunlarımız kahvaltıda buluşuyor</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Etkinliği incele</a></p>
+                            <p><a class="btn btn-lg btn-primary" asp-action="Details" asp-route-id="26" role="button">Etkinliği incele</a></p>
                         </div>
                     </div>
                 </div>
@@ -125,7 +258,7 @@
                         <div class="carousel-caption text-right">
                             <h1>Mezuniyet Töreni</h1>
                             <p>Mezuniyet Töreni hakkında bilgi almak için tıklayınız</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">İncele</a></p>
+                            <p><a class="btn btn-lg btn-primary" asp-action="Details" asp-route-id="21" role="button">İncele</a></p>
                         </div>
                     </div>
                 </div>
@@ -149,7 +282,22 @@
 
             <!-- Three columns of text below the carousel -->
             <div class="row" style="width:1150px;">
-                <div class="col-xs-12 col-lg-7" style="width:730px;">   </div>
+               
+                <div class="col-xs-12 col-lg-7" style="width:730px; padding-top:6px;">
+                    <div class="clearfix">
+                        <h2 class="title">İstatistikler</h2>
+                    </div>
+
+                    <div id="divColumnChart" style="width:600px; height:300px">
+                    </div>
+                    <div id="divPieChart" style="width:600px; height:300px">
+                    </div>
+
+
+
+
+
+                </div>
                 <div class="col-xs-12 col-lg-5" style="width:380px; padding-left:60px;">
                     <div class="clearfix">
                         <h2 class="title">Duyurular</h2>
@@ -157,7 +305,6 @@
                     @foreach (var announcement in Model.Announcements)
                     {
                         <div class="row" style="width:470px; padding-top:20px;">
-                            @*<div class="col-xs-12 col-lg-12" style="color:black">*@
                             <img class="rounded-circle" src="~/İmg/999999.jpg" alt="Generic placeholder image" width="120" height="120">
                             <div style="float:right; width:345px;">
                                 <span class="date">@Html.DisplayFor(modelItem => announcement.ACreateDate)</span>
@@ -175,70 +322,31 @@
                     </div>
                 </div>
 
-                @*<div class="col-lg-4">
-                        <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                        <h2>Heading</h2>
-                        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-                    </div>*@<!-- /.col-lg-4 -->
-                @*<div class="col-lg-4">
-                        <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                        <h2>Heading</h2>
-                        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-                    </div>*@<!-- /.col-lg-4 -->
-            </div><!-- /.row -->
-            <!-- START THE FEATURETTES -->
 
-            <hr class="featurette-divider">
 
-            <div class="row featurette">
-                <div class="col-md-7">
-                    <h2 class="featurette-heading"><span class="text-muted">Mezun Bilgi Sistemi</span></h2>
-                    <p class="lead" style="color:black">
-                        Değerli Mezunumuz
+                <hr class="featurette-divider">
 
-                        Mezun Bilgi Sistemi sizlerin mezuniyet sonrası üniversiteniz ile olan iletişiminizin devam etmesi için oluşturulmuştur. Sistem üzerinden mezuniyet sonrası (Eğitim, iletişim, iş vb.) bilgilerinizi güncellemeniz üniversite olarak sizlere ulaşabilmemiz ve sizlerinde iş başvurularında bulunduğunuz her yerden özgeçmiş (CV) çıktısı almanıza kolaylık sağlayacaktır.
-                    </p>
-                </div>
-                <div class="col-md-5">
-                    <img class="featurette-image img-fluid mx-auto" src="~/İmg/101.jpg" alt="Generic placeholder image">
-                </div>
+
+                <hr class="featurette-divider">
+
+
+
+                <hr class="featurette-divider">
+
+
+
+                <hr class="featurette-divider">
+
+                <!-- /END THE FEATURETTES -->
+
             </div>
+        </div>
 
-            <hr class="featurette-divider">
-
-            <div class="row featurette">
-                <div class="col-md-7 order-md-2">
-                    <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                </div>
-                <div class="col-md-5 order-md-1">
-                    <img class="featurette-image img-fluid mx-auto" src="~/İmg/5.jpg" alt="Generic placeholder image">
-                </div>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <div class="row featurette">
-                <div class="col-md-7">
-                    <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                </div>
-                <div class="col-md-5">
-                    <img class="featurette-image img-fluid mx-auto" src="~/İmg/1.jpg" alt="Generic placeholder image">
-                </div>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <!-- /END THE FEATURETTES -->
-
-        </div><!-- /.container -->
+        <!-- /.container -->
         <!-- FOOTER -->
         <footer class="container">
-            <p class="float-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+            <p class="float-right"><a href="#">Yukarı Git</a></p>
+            <p>&copy; 2018-2019 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
         </footer>
     </main>
 
@@ -253,7 +361,24 @@
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="../../assets/js/vendor/holder.min.js"></script>
 
-
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
 
 </body>
 </html>

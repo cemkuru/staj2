@@ -1,7 +1,7 @@
 ﻿@model Abis.Mbs.MvcWebUI.Areas.Admin.Models.JobFormAddViewModel
 @{
     ViewData["Title"] = "Add";
-    Layout = "~/Views/_AdminLayout.cshtml";
+    Layout = "~/Areas/User/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2 style="">Start your application</h2>
@@ -16,7 +16,7 @@
             <div class="col-md-6">
                 <!-- Material input -->
                 <div class="md-form form-group">
-                    <label asp-for="JobForm.Name"></label>
+                    <label asp-for="JobForm.Name">Ad Soyad</label>
                     <input type="text" asp-for="JobForm.Name" class="form-control" placeholder="Name " />
                     <span asp-validation-for="JobForm.Name"></span>
                 </div>
@@ -26,7 +26,7 @@
             <div class="col-md-6">
                 <!-- Material input -->
                 <div class="md-form form-group">
-                    <label asp-for="JobForm.PhoneNumber"></label>
+                    <label asp-for="JobForm.PhoneNumber">Telefon</label>
                     <input type="text" asp-for="JobForm.PhoneNumber" class="form-control" placeholder="Phone Number " />
                     <span asp-validation-for="JobForm.PhoneNumber"></span>
                 </div>
@@ -40,7 +40,7 @@
             <div class="col-md-12">
                 <!-- Material input -->
                 <div class="md-form form-group">
-                    <label asp-for="JobForm.Position"></label>
+                    <label asp-for="JobForm.Position">Pozisyon</label>
                     <input type="text" asp-for="JobForm.Position" class="form-control" placeholder="Position" />
                     <span asp-validation-for="JobForm.Position"></span>
                 </div>
@@ -66,7 +66,7 @@
                 <!-- Material input -->
 
                 <div class="md-form form-group">
-                    <label asp-for="JobForm.Resume"></label>
+                    <label asp-for="JobForm.Resume">Özgeçmiş (CV) </label>
                     <input type="file" asp-for="JobForm.Resume" class="form-control" placeholder="Resume" />
                     <span asp-validation-for="JobForm.Resume"></span>
                 </div>
@@ -97,6 +97,3 @@
 </div>
 
 
-<!-- Extended material form grid -->
-
-<!-- Extended material form grid -->
