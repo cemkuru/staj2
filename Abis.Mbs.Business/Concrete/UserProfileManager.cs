@@ -22,7 +22,8 @@ namespace Abis.Mbs.Business.Concrete
 
         public void Delete(int Id)
         {
-            _userProfileDal.Delete(new UserProfile { ID = Id });
+            
+            _userProfileDal.Delete(_userProfileDal.Get(x=> x.ID == Id));
         }
 
         public List<UserProfile> GetAll()
@@ -38,6 +39,11 @@ namespace Abis.Mbs.Business.Concrete
         public void Update(UserProfile userProfile)
         {
             _userProfileDal.Update(userProfile);
+        }
+
+        public UserProfile GetUserProfileById(string Id)
+        {
+            return _userProfileDal.Get(p => p.UserId == Id);
         }
     }
 }

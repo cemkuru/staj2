@@ -12,5 +12,7 @@ namespace Abis.Mbs.Business.Abstract
         void Update(UserProfile userProfile);
         void Delete(int Id);
         UserProfile GetById(int Id);
+
+        UserProfile GetUserProfileById(string Id);
     }
 }

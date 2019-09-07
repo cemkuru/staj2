@@ -23,7 +23,9 @@ namespace Abis.Mbs.DataAccess.Concrete.EntityFramework
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<JobForm> JobForms { get; set; }
+        public DbSet<Department> Departments { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<Language> Languages { get; set; }
 
 
 

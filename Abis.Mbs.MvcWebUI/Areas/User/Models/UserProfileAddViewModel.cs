@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Abis.Mbs.MvcWebUI.Areas.User.Models
 {
-    public class UserProfileAddViewModel
+    public class UserProfileAddViewModel : UserProfile
     {
         public UserProfile UserProfile { get; set; }
+        public Department Department { get; set; }
     }
 }

@@ -26,14 +26,20 @@ namespace Abis.Mbs.MvcWebUI
         {
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
+
             // Job Service and job data acess layers
             services.AddScoped<IJobService, JobManager>();
             services.AddScoped<IJobDal, EfJobDal>();
 
-           
+            //Language Service and DAL
+            services.AddScoped<ILanguageService, LanguageManager>();
+            services.AddScoped<ILanguageDal, EfLanguageDal>();
+
+            // Departement service and DAL
+            services.AddScoped<IDepartmentService, DepartmentManager>();
+            services.AddScoped<IDepartmentDal, EfDepartmentDal>();
 
             //Application job form
-
             services.AddScoped<IJobFormService, JobFormManager>();
             services.AddScoped<IJobFormDal, EfJobFormDal>();
             
@@ -49,6 +55,8 @@ namespace Abis.Mbs.MvcWebUI
             // UserProfile Service and Data Access Layers
             services.AddScoped<IUserProfileService, UserProfileManager>();
             services.AddScoped<IUserProfileDal, EfUserProfileDal>();
+
+
 
             services.AddDbContext<CustomIdentityDbContext>
             (options => options.UseSqlServer("Data Source=abisstaj2019.database.windows.net;Database=mbs_2019;User ID=Abisstaj2019;Password=Chha4773;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));

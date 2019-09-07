@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Abis.Mbs.Entities.Concrete
 {
-    public class Department:IEntity
+    public class Department : IEntity
     {
         [Key]
         public int DepId { get; set; }

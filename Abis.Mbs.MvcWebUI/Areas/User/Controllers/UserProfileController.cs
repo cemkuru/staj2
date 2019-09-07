@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Abis.Mbs.Business.Abstract;
 using Abis.Mbs.Entities.Concrete;
 using Abis.Mbs.MvcWebUI.Areas.User.Models;
 using Abis.Mbs.MvcWebUI.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
+
 
 namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
 {
@@ -18,107 +20,161 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
     public class UserProfileController : Controller
     {
         private readonly UserManager<CustomIdentityUser> _userManager;
-
+        private readonly IHostingEnvironment hostingEnvironment;
         private IUserProfileService _userProfileService;
+        private IDepartmentService _departmentService;
+        private ILanguageService _languageService;
 
-        //private readonly IApplicationUserService _applicationUserService;
+       
 
-        public UserProfileController(UserManager<CustomIdentityUser> userManager, IUserProfileService userProfileService)
+        public UserProfileController(UserManager<CustomIdentityUser> userManager,
+                                    IUserProfileService userProfileService,
+                                    IDepartmentService departmentService,
+                                    ILanguageService languageService,
+                                    IHostingEnvironment environment)
         {
             _userManager = userManager;
             _userProfileService = userProfileService;
+            _departmentService = departmentService;
+            _languageService = languageService;
+            hostingEnvironment = environment;
         }
 
 
-     
+
 
         // Profile Details
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
+           
             string username = User.Identity.Name;
             CustomIdentityUser user = _userManager.FindByNameAsync(username).Result;
-            var userProfile = _userProfileService.GetById(id);
+
+
+            var userProfile = _userProfileService.GetAll().FirstOrDefault(x => x.UserId.Equals(user.Id));
+
+            if (userProfile == null)
+            {
+                var profile = new UserProfile()
+                {
+                    UserId = user.Id,
+                    DepId = 5,
+                    LanguageID = 1
+                };
+
+                _userProfileService.Add(profile);
+                userProfile = profile;
+
+            }
+            var departement = _departmentService.GetById(userProfile.DepId);
+            var language = _languageService.GetById(userProfile.LanguageID);
+
             UserProfileViewModel model = new UserProfileViewModel()
             {
-                UserProfile =  userProfile,
-                CustomIdentityUser = user,               
-                                 
+                UserProfile = userProfile,
+                CustomIdentityUser = user,
+                Department = departement,
+                Language = language
+
             };
-            //var userId = _userManager.GetUserId(HttpContext.User);
-            //CustomIdentityUser user = _userManager.FindByIdAsync(userId).Result;
-            //var profile = _userProfileService.GetAll().FirstOrDefault(u=> u.UserId == user.Id);
-            //var model = new UserProfileViewModel()
-            //{
-            //    UserId =user.Id,
-                
-            //};
 
             return View(model);
         }
+       
 
-        // Create a Profile
-
-        public ActionResult Create(UserProfileAddViewModel NewUser)
-        {
-            if (ModelState.IsValid)
-            {
-                var model = new UserProfile();
-                //_userManager.CreateAsync(model);
-
-
-            }
-            return View(NewUser);
-        }
         //GET: Edit Profile
-
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
             string username = User.Identity.Name;
-            CustomIdentityUser user = _userManager.FindByNameAsync(username).Result;
-            var userProfile = _userProfileService.GetById(id);
+            CustomIdentityUser identityUser = _userManager.FindByNameAsync(username).Result;
+            //Fetch userProfile
+            UserProfile user = _userProfileService.GetAll().FirstOrDefault(x => x.UserId.Equals(identityUser.Id));
 
-            UserProfileUpdateViewModel model = new UserProfileUpdateViewModel()
-            {
-                UserProfile = userProfile,
-                CustomIdentityUser = user
-
-            };
+            ////Construct the model
+            UserProfileUpdateViewModel model = new UserProfileUpdateViewModel();
+            model.UserProfile = user;
+            model.DepId = user.DepId;
+            model.LanguageID = user.LanguageID;
+            model.Departments = _departmentService.GetAll();
+            model.Languages = _languageService.GetAll();
 
             return View(model);
         }
 
         //POST : Edit Profile
         [HttpPost]
-        public ActionResult Edit(UserProfileUpdateViewModel userProfileViewModel)
+        public ActionResult Edit(UserProfileUpdateViewModel userProfileViewModel, IFormFile Photo)
         {
+
             if (ModelState.IsValid)
             {
+                // Add User Photo to the profile
+                var filename = string.Empty;                          
+                // upload Photo
+                if (Photo != null)
+                {
+                    // Find route path
+                    filename = Path.Combine("UserImages", Guid.NewGuid() + Photo.FileName);
+                    
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", filename); //extract the filname of the pic
+                    Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+
+
+                // Editing Part...
 
                 string username = User.Identity.Name;
                 CustomIdentityUser identityUser = _userManager.FindByNameAsync(username).Result;
-                _userManager.UpdateAsync(identityUser);
-                var userProfile = _userProfileService.GetById(userProfileViewModel.UserProfile.ID);
-               
+
+                //Get userProfile
+                UserProfile user = _userProfileService.GetAll().FirstOrDefault(x => x.UserId.Equals(identityUser.Id));
 
 
+                //user profile Id is connected to Logged in User
+                user.UserId = identityUser.Id;
 
+                //Update the profile
+                user.Project = userProfileViewModel.UserProfile.Project;
+                user.SKills = userProfileViewModel.UserProfile.SKills;
+                user.DepId = userProfileViewModel.DepId;
+                user.LanguageID = userProfileViewModel.LanguageID;
+                user.Experience = userProfileViewModel.UserProfile.Experience;
+                user.CGPA = userProfileViewModel.UserProfile.CGPA;
+                user.Education = userProfileViewModel.UserProfile.Education; 
+                user.UserPhoto = filename;
+                _userProfileService.Update(user);
 
-                _userProfileService.Update(userProfile);
             }
 
-            return RedirectToAction("Edit", new { area = "User" });
+            return RedirectToAction("Details", new { area = "User" });
         }
 
-        //Profile Index
-        public ActionResult Index()
-        {
-            var userProfiles = _userProfileService.GetAll();
-            UserProfileListViewModel model = new UserProfileListViewModel
-            {
-                UserProfiles = userProfiles
-            };
-            return View(model);
-        }
+
+
+      
+        //public ActionResult Index()
+        //{
+        //    HtmlToPdfConverter converter = new HtmlToPdfConverter();
+
+        //    WebKitConverterSettings settings = new WebKitConverterSettings();
+
+        //    settings.WebKitPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/QtBinariesWindows");
+        //    converter.ConverterSettings = settings;
+
+        //    PdfDocument document = converter.Convert("https://localhost:44375/User/UserProfile/Index");
+
+        //    MemoryStream ms = new MemoryStream();
+        //    document.Save(ms);
+        //    document.Close(true);
+
+        //    ms.Position = 0;
+
+        //    FileStreamResult fileStreamResult = new FileStreamResult(ms, "application/pdf");
+
+        //    fileStreamResult.FileDownloadName = "UserProfile.pdf";
+
+        //    return fileStreamResult;
+        //}
 
         // Add Profile
         public ActionResult Add()

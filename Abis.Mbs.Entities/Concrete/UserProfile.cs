@@ -21,8 +21,17 @@ namespace Abis.Mbs.Entities.Concrete
 
         public string Project { get; set; }
 
+        public string UserPhoto { get; set; }
 
-        //public byte ProfileImage { get; set; }
+        public int LanguageID { get; set; }
+
+        public int CGPA { get; set; }
+
+        public string Experience { get; set; }
+
+        public string Education { get; set; }
+
+
 
     }
 }

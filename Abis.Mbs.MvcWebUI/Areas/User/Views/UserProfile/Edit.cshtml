@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model Abis.Mbs.MvcWebUI.Areas.User.Models.UserProfileUpdateViewModel
+@inject UserManager<Abis.Mbs.MvcWebUI.Entities.CustomIdentityUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<div class="panel-body">
+    <form asp-controller="UserProfile" asp-area="User" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="UserProfile.SKills"></label>
+            <input asp-for="UserProfile.SKills" class="form-control" placeholder="Skils " />
+            <span asp-validation-for="UserProfile.SKills"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserProfile.Project"></label>
+            <input asp-for="UserProfile.Project" class="form-control" placeholder="Project" />
+            <span asp-validation-for="UserProfile.Project"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="UserProfile.Education"></label>
+            <input asp-for="UserProfile.Education" class="form-control" placeholder="Education" />
+            <span asp-validation-for="UserProfile.Education"></span>
+        </div>
+
+        <div class="form-group">
+
+            <label asp-for="Departments"></label>
+            <select class="browser-default custom-select custom-select-lg mb-3" searchable="Search here.." asp-for="DepId" asp-items="@(new SelectList(Model.Departments,"DepId","DepartmentName"))">
+                <option value="" disabled selected>Choose your department</option>
+            </select>
+            <span asp-validation-for="DepId"></span>
+        </div>
+
+        <div class="form-group">
+
+            <label asp-for="Languages"></label>
+            <select class="browser-default custom-select custom-select-lg mb-3" searchable="Search here.." asp-for="LanguageID" asp-items="@(new SelectList(Model.Languages,"LanguageID","LanguageName"))">
+                <option value="" disabled selected>Language</option>
+            </select>
+            <span asp-validation-for="LanguageID"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="UserProfile.CGPA"></label>
+            <input asp-for="UserProfile.CGPA" class="form-control" placeholder="Enter your grade" max="4" />
+            <span asp-validation-for="UserProfile.CGPA"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="UserProfile.Experience"></label>
+            <textarea asp-for="UserProfile.Experience" id="form10" class="md-textarea form-control" rows="3"></textarea>
+            <span asp-validation-for="UserProfile.Experience"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="UserProfile.UserPhoto"></label>
+            <input name="Photo" type="file" asp-for="UserProfile.UserPhoto" class="form-control" />
+            <span asp-validation-for="UserProfile.UserPhoto"></span>
+        </div>
+
+        <input type="hidden" asp-for="UserProfile.UserId" />
+        <input type="submit" value="Edit" class="btn btn-xs btn-success" />
+
+    </form>
+</div>
