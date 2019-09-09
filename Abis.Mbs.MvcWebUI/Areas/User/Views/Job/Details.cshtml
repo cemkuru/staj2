@@ -1,231 +1,302 @@
 ﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobViewModel
 
-@{
-    ViewData["Title"] = "JobDetails";
-    Layout = "~/Views/_AdminLayout.cshtml";
-}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Mezun Bilgi Sistemi</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+
+    <link href="~/css/carousel.css" rel="stylesheet" />
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color:white">
+            <a class="navbar-brand" asp-area="" asp-controller="HomePage" asp-action="Index"><img src="~/İmg/999999.jpg" style="height:80px; margin:5px 5px 5px 0;" />Mezun Bilgi Sistemi</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-area="" asp-controller="HomePage" asp-action="Index">Ana Sayfa <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Giriş<span class="sr-only">(current)</span></a>
+                    </li>
+
+                    @* Job Announcement button *@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("User"))
+                        {
+
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="User" asp-controller="JobForm" asp-action="AddJobForm">Find job<span class="sr-only">(current)</span></a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @* Job Announcement button *@
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobIndex">Update/Delete Jobs<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobFormIndex">Job Form Application<span class="sr-only">(current)</span></a>
+                            </li>
+                        }
+                    }
 
 
-<div class="row" style="width:1150px; margin-top:20px;">
-    <div class="col-xs-12 col-lg-7">
-        <h3> <strong>Aday Kriterleri</strong></h3>
 
-        <div class="jumbotron" style="background-color:aliceblue; margin-bottom:89px;">
-            <div class="content knetLoadingWrapper">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <h4>
-                            <strong>
-                                Tecrübe:
-                            </strong>
-                        </h4>
-                    </div>
-                    <div class="col-12">
-                        <h4>  @Html.DisplayFor(model => model.Job.Experience) </h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <h4>
-                            <strong>
-                                Eğitim Seviyesi:
-                            </strong>
-                        </h4>
-                    </div>
-                    <div class="col-12">
-                        <h4>   @Html.DisplayFor(model => model.Job.EducationLevel) </h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <h4>
-                            <strong>
-                                Üniversite Bölümü:
-                            </strong>
-                        </h4>
-                    </div>
-                    <div class="col-12">
-                        <h4>   @Html.DisplayFor(model => model.Job.Education) </h4>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <h3> <strong>Pozisyon Bilgileri</strong></h3>
-        <div class="jumbotron" style="background-color:aliceblue;">
-            <div class="mid-wrapper">
-                <div class="sub-box">
-                    <div class="content knetLoadingWrapper">
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <h4>
-                                    <strong>
-                                        Departman:
-                                    </strong>
-                                </h4>
-                            </div>
-                            <div class="col-12">
-                                <h4>  @Html.DisplayFor(model => model.Job.Department) </h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <h4>
-                                    <strong>
-                                        Çalışma Tipi:
-                                    </strong>
-                                </h4>
-                            </div>
-                            <div class="col-12">
-                                <h4>   @Html.DisplayFor(model => model.Job.WorkType) </h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <h4>
-                                    <strong>
-                                        Pozisyon:
-                                    </strong>
-                                </h4>
-                            </div>
-                            <div class="col-12">
-                                <h4>   @Html.DisplayFor(model => model.Job.Position) </h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <h4>
-                                    <strong>
-                                        Şehir:
-                                    </strong>
-                                </h4>
-                            </div>
-                            <div class="col-12">
-                                <h4>   @Html.DisplayFor(model => model.Job.City) </h4>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
+                </ul>
 
             </div>
-        </div>
-    </div>
+        </nav>
+    </header>
+    <main role="main">
 
-    <div class="col-xs-12 col-lg-5">
-        <h3> <strong>Firma Hakkında</strong></h3>
+        <div class="container marketing">
+            <div class="row" style="width:1150px; margin-top:20px;">
+                <div class="col-xs-12 col-lg-7" style="margin-top:50px;">
+                    <h3> <strong>Aday Kriterleri</strong></h3>
 
-        <div class="jumbotron" style="background-color:aliceblue;">
-            <div class="mid-wrapper">
-                <div class="sub-box">
-                    <div class="content knetLoadingWrapper">
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <h4>
-                                    <strong>
-                                        Firma:
-                                    </strong>
-                                </h4>
+                    <div class="jumbotron" style="background-color:aliceblue; margin-bottom:103px;">
+                        <div class="content knetLoadingWrapper" style="padding-left:20px;">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <h4>
+                                        <strong>
+                                            Tecrübe:
+                                        </strong>
+                                    </h4>
+                                </div>
+                                <div class="col-xs-12" style="padding-left:13px;">
+                                    <h4>  @Html.DisplayFor(model => model.Job.Experience) </h4>
+                                </div>
                             </div>
-                            <div class="col-12">
-                                <h4>  @Html.DisplayFor(model => model.Job.Company) </h4>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <h4>
+                                        <strong>
+                                            Eğitim Seviyesi:
+                                        </strong>
+                                    </h4>
+                                </div>
+                                <div class="col-xs-12" style="padding-left:13px;">
+                                    <h4>   @Html.DisplayFor(model => model.Job.EducationLevel) </h4>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <h4>
+                                        <strong>
+                                            Üniversite Bölümü:
+                                        </strong>
+                                    </h4>
+                                </div>
+                                <div class="col-xs-12" style="padding-left:13px;">
+                                    <h4>   @Html.DisplayFor(model => model.Job.Education) </h4>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <h4>
-                                    <strong>
-                                        Telefon:
-                                    </strong>
-                                </h4>
+                    </div>
+                    <h3> <strong>Pozisyon Bilgileri</strong></h3>
+                    <div class="jumbotron" style="background-color:aliceblue;" >
+                        <div class="mid-wrapper">
+                            <div class="sub-box">
+                                <div class="content knetLoadingWrapper" style="padding-left:20px;">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <h4>
+                                                <strong>
+                                                    Departman:
+                                                </strong>
+                                            </h4>
+                                        </div>
+                                        <div class="col-xs-12" style="padding-left:13px;">
+                                            <h4>  @Html.DisplayFor(model => model.Job.Department) </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <h4>
+                                                <strong>
+                                                    Çalışma Tipi:
+                                                </strong>
+                                            </h4>
+                                        </div>
+                                        <div class="col-xs-12" style="padding-left:13px;">
+                                            <h4>   @Html.DisplayFor(model => model.Job.WorkType) </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <h4>
+                                                <strong>
+                                                    Pozisyon:
+                                                </strong>
+                                            </h4>
+                                        </div>
+                                        <div class="col-xs-12" style="padding-left:13px;">
+                                            <h4>   @Html.DisplayFor(model => model.Job.Position) </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <h4>
+                                                <strong>
+                                                    Şehir:
+                                                </strong>
+                                            </h4>
+                                        </div>
+                                        <div class="col-xs-12" style="padding-left:13px;">
+                                            <h4>   @Html.DisplayFor(model => model.Job.City) </h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
-                            <div class="col-12">
-                                <h4>   @Html.DisplayFor(model => model.Job.Telephone) </h4>
-                            </div>
+
                         </div>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <h4>
-                                    <strong>
-                                        Adres:
-                                    </strong>
-                                </h4>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-lg-5" style="margin-top:50px;">
+                    <h3> <strong>Firma Hakkında</strong></h3>
+
+                    <div class="jumbotron" style="background-color:aliceblue;">
+                        <div class="mid-wrapper">
+                            <div class="sub-box">
+                                <div class="content knetLoadingWrapper" style="padding-left:20px;">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <h4>
+                                                <strong>
+                                                    Firma:
+                                                </strong>
+                                            </h4>
+                                        </div>
+                                        <div class="col-xs-12" style="padding-left:13px;">
+                                            <h4>  @Html.DisplayFor(model => model.Job.Company) </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <h4>
+                                                <strong>
+                                                    Telefon:
+                                                </strong>
+                                            </h4>
+                                        </div>
+                                        <div class="col-xs-12" style="padding-left:13px;">
+                                            <h4>   @Html.DisplayFor(model => model.Job.Telephone) </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <h4>
+                                                <strong>
+                                                    Adres:
+                                                </strong>
+                                            </h4>
+                                        </div>
+                                        <div class="col-xs-12" style="padding-left:13px;">
+                                            <h4>   @Html.DisplayFor(model => model.Job.Address) </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <h4>
+                                                <strong>
+                                                    Şehir:
+                                                </strong>
+                                            </h4>
+                                        </div>
+                                        <div class="col-xs-12" style="padding-left:13px;">
+                                            <h4>   @Html.DisplayFor(model => model.Job.City) </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <h4>
+                                                <strong>
+                                                    İlan Tarihi:
+                                                </strong>
+                                            </h4>
+                                        </div>
+                                        <div class="col-xs-12" style="padding-left:13px;">
+                                            <h4>   @Html.DisplayFor(model => model.Job.Date) </h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
-                            <div class="col-12">
-                                <h4>   @Html.DisplayFor(model => model.Job.Address) </h4>
-                            </div>
+
                         </div>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <h4>
-                                    <strong>
-                                        Şehir:
-                                    </strong>
-                                </h4>
+                    </div>
+
+                    <h3> <strong>İş Tanımı</strong></h3>
+                    <div class="jumbotron" style="background-color:aliceblue;">
+                        <div class="mid-wrapper">
+                            <div class="sub-box">
+                                <div class="content knetLoadingWrapper" style="padding-left:20px;">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+
+                                        </div>
+                                        <div class="col-xs-12" style="padding-left:13px;">
+                                            <h4>  @Html.DisplayFor(model => model.Job.Description) </h4>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
                             </div>
-                            <div class="col-12">
-                                <h4>   @Html.DisplayFor(model => model.Job.City) </h4>
-                            </div>
+
                         </div>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <h4>
-                                    <strong>
-                                        İlan Tarihi:
-                                    </strong>
-                                </h4>
-                            </div>
-                            <div class="col-12">
-                                <h4>   @Html.DisplayFor(model => model.Job.Date) </h4>
-                            </div>
-                        </div>
+
+
+                    </div>
+                    <div>
+                        <a class="btn btn-lg btn-success" style="margin-left:361px;" asp-area="User" asp-controller="JobForm" asp-action="AddJobForm">Başvur</a>
 
                     </div>
 
                 </div>
 
-            </div>
-        </div>
 
-        <h3> <strong>İş Tanımı</strong></h3>
-        <div class="jumbotron" style="background-color:aliceblue;">
-            <div class="mid-wrapper">
-                <div class="sub-box">
-                    <div class="content knetLoadingWrapper">
-                        <div class="row">
-                            <div class="col-xs-4">
-                               
-                            </div>
-                            <div class="col-12">
-                                <h4>  @Html.DisplayFor(model => model.Job.Description) </h4>
-                            </div>
-                        </div>
-                       
-                     
-                       
 
-                    </div>
 
-                </div>
+
 
             </div>
-
-
+            <div>
+                @*<a asp-area="User" asp-controller="Job" asp-action="Index">Back to List</a>*@
+            </div>
         </div>
-        <div>
-            <a class="btn btn-lg btn-success" style="margin-left:361px;" asp-area="User" asp-controller="JobForm" asp-action="AddJobForm">Başvur</a>
+        </main>
 
-        </div>
-
-    </div>
-
-
-
-
-
-
-    </div>
-    <div>
-        @*<a asp-area="User" asp-controller="Job" asp-action="Index">Back to List</a>*@
-    </div>
+</body>
+</html>
+    
