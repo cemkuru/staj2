@@ -13,7 +13,7 @@
     <div class="container marketing">
 
         <div class="row">
-            @foreach (var announcement in Model.Announcements)
+            @foreach (var announcement in Model.Announcements.OrderByDescending(announcement => announcement.ACreateDate))
             {
                 <div class="col-lg-3" style="padding-left:55px;">
                     <img class="rounded-circle" src="~/İmg/999999.jpg" alt="Generic placeholder image" width="140" height="140">

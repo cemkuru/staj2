@@ -35,7 +35,7 @@ namespace Abis.Mbs.Entities.Concrete
         public string Company { get; set; }
 
         [Required]
-        public long Telephone { get; set; }
+        public string Telephone { get; set; }
 
         [Required]
         public string Address { get; set; }

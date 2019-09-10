@@ -1,6 +1,5 @@
 ﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.JobViewModel
 
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,7 +21,6 @@
     <link href="~/css/carousel.css" rel="stylesheet" />
 </head>
 <body>
-
     <header>
         <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color:white">
             <a class="navbar-brand" asp-area="" asp-controller="HomePage" asp-action="Index"><img src="~/İmg/999999.jpg" style="height:80px; margin:5px 5px 5px 0;" />Mezun Bilgi Sistemi</a>
@@ -44,9 +42,7 @@
                         @if (User.IsInRole("User"))
                         {
 
-                            <li class="nav-item active">
-                                <a class="nav-link" asp-area="User" asp-controller="JobForm" asp-action="AddJobForm">Find job<span class="sr-only">(current)</span></a>
-                            </li>
+                          
                         }
 
                         @if (User.IsInRole("Admin"))
@@ -60,11 +56,7 @@
                             </li>
                         }
                     }
-
-
-
                 </ul>
-
             </div>
         </nav>
     </header>
@@ -113,7 +105,6 @@
                                     <h4>   @Html.DisplayFor(model => model.Job.Education) </h4>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <h3> <strong>Pozisyon Bilgileri</strong></h3>
@@ -169,15 +160,11 @@
                                             <h4>   @Html.DisplayFor(model => model.Job.City) </h4>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
-
                 <div class="col-xs-12 col-lg-5" style="margin-top:50px;">
                     <h3> <strong>Firma Hakkında</strong></h3>
 
@@ -245,14 +232,10 @@
                                             <h4>   @Html.DisplayFor(model => model.Job.Date) </h4>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
-
                     <h3> <strong>İş Tanımı</strong></h3>
                     <div class="jumbotron" style="background-color:aliceblue;">
                         <div class="mid-wrapper">
@@ -266,37 +249,18 @@
                                             <h4>  @Html.DisplayFor(model => model.Job.Description) </h4>
                                         </div>
                                     </div>
-
-
-
-
                                 </div>
-
                             </div>
-
                         </div>
-
-
                     </div>
                     <div>
                         <a class="btn btn-lg btn-success" style="margin-left:361px;" asp-area="User" asp-controller="JobForm" asp-action="AddJobForm">Başvur</a>
 
                     </div>
-
                 </div>
-
-
-
-
-
-
-            </div>
-            <div>
-                @*<a asp-area="User" asp-controller="Job" asp-action="Index">Back to List</a>*@
             </div>
         </div>
         </main>
-
 </body>
 </html>
     

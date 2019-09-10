@@ -3,186 +3,251 @@
 @inject UserManager<Abis.Mbs.MvcWebUI.Entities.CustomIdentityUser> UserManager
 
 
-@{
+@*@{
     ViewData["Title"] = "Details";
     Layout = "~/Views/_AdminLayout.cshtml";
-}
+}*@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Mezun Bilgi Sistemi</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+
+    <link href="~/css/carousel.css" rel="stylesheet" />
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color:white">
+            <a class="navbar-brand" asp-area="" asp-controller="HomePage" asp-action="Index"><img src="~/İmg/999999.jpg" style="height:60px; margin:5px 5px 5px 0;" />Mezun Bilgi Sistemi</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-area="" asp-controller="HomePage" asp-action="Index">Ana Sayfa <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Giriş<span class="sr-only">(current)</span></a>
+                    </li>
+
+                    @* Job Announcement button *@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("User"))
+                        {
+
+                        }
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @* Job Announcement button *@
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobIndex">Update/Delete Jobs<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="JobFormIndex">Job Form Application<span class="sr-only">(current)</span></a>
+                            </li>
+                        }
+                    }
 
 
 
-<link href="~/css//admin-css//css/bootsnip.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+                </ul>
 
-<div class="container emp-profile">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    @*<img class="img" src="@Url.Content(Model.UserPhoto)" />*@
-                    <img class="img-circle" src="\@Url.Content(Model.UserProfile.UserPhoto)">
-                    @*<div class="file btn btn-lg btn-primary">
-                            Change Photo
-                        </div>*@
+            </div>
+        </nav>
+    </header>
+    </body>
+</html>
+
+    <link href="~/css//admin-css//css/bootsnip.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="container emp-profile" style="margin-top:60px;">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        @*<img class="img" src="@Url.Content(Model.UserPhoto)" />*@
+                        <img class="img-circle" src="\@Url.Content(Model.UserProfile.UserPhoto)">
+                        @*<div class="file btn btn-lg btn-primary">
+                                Change Photo
+                            </div>*@
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="profile-head">
-                    <h5>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>
 
-                        @($"{ Model.CustomIdentityUser.UserName}")
+                            @($"{ Model.CustomIdentityUser.UserName}")
 
-                    </h5>
-                    <h6>
-                        @($"{Model.Department.DepartmentName}")
+                        </h5>
+                        <h6>
+                            @($"{Model.Department.DepartmentName}")
 
-                    </h6>
+                        </h6>
 
-                    <h6>
-                        @($"{Model.UserProfile.SKills}")
+                        <h6>
+                            @($"{Model.UserProfile.SKills}")
 
-                    </h6>
-                    <p class="proile-rating">GRADE : <span>@Model.UserProfile.CGPA</span></p>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Info</a>
-                        </li>
+                        </h6>
+                        <p class="proile-rating">GRADE : <span>@Model.UserProfile.CGPA</span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Info</a>
+                            </li>
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <a class="btn btn-success" value="Edit Profile" asp-area="User" asp-controller="UserProfile" asp-action="Edit">Edit Profile</a>
-                @*<a class="btn btn-success" asp-area="User" asp-controller="File" asp-action="Index">View Profile</a>*@
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-                    <p>PROJECT</p>
-                    <a href="">
-                        @($"{Model.UserProfile.Project}")
-                    </a>
-                    <br />
-                    <p>SKILLS</p>
-                    <a href="">
-                        @($"{Model.UserProfile.SKills}")
-                    </a><br />
+                <div class="col-md-2">
+                    <a class="btn btn-success" value="Edit Profile" asp-area="User" asp-controller="UserProfile" asp-action="Edit">Edit Profile</a>
+                    @*<a class="btn btn-success" asp-area="User" asp-controller="File" asp-action="Index">View Profile</a>*@
                 </div>
+
             </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                @Html.LabelFor(u => u.CustomIdentityUser.UserName)
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    @($"{Model.CustomIdentityUser.UserName}")
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                @Html.LabelFor(u => u.Department)
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    @($"{Model.Department.DepartmentName}")
-                                </p>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                @Html.LabelFor(u => u.Language)
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    @($"{Model.Language.LanguageName}")
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                @Html.LabelFor(u => u.UserProfile.Education)
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    @($"{Model.UserProfile.Education}")
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                @Html.LabelFor(u => u.UserProfile.Experience)
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    @($"{Model.UserProfile.Experience}")
-                                </p>
-                            </div>
-                        </div>
-
-
-
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-work">
+                        <p>PROJECT</p>
+                        <a href="">
+                            @($"{Model.UserProfile.Project}")
+                        </a>
+                        <br />
+                        <p>SKILLS</p>
+                        <a href="">
+                            @($"{Model.UserProfile.SKills}")
+                        </a><br />
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Experience</label>
+                                    @Html.LabelFor(u => u.CustomIdentityUser.UserName)
                                 </div>
                                 <div class="col-md-6">
-                                    <p>Expert</p>
+                                    <p>
+                                        @($"{Model.CustomIdentityUser.UserName}")
+                                    </p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Hourly Rate</label>
+                                    @Html.LabelFor(u => u.Department)
                                 </div>
                                 <div class="col-md-6">
-                                    <p>10$/hr</p>
+                                    <p>
+                                        @($"{Model.Department.DepartmentName}")
+                                    </p>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Total Projects</label>
+                                    @Html.LabelFor(u => u.Language)
                                 </div>
                                 <div class="col-md-6">
-                                    <p>230</p>
+                                    <p>
+                                        @($"{Model.Language.LanguageName}")
+                                    </p>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>English Level</label>
+                                    @Html.LabelFor(u => u.UserProfile.Education)
                                 </div>
                                 <div class="col-md-6">
-                                    <p>Expert</p>
+                                    <p>
+                                        @($"{Model.UserProfile.Education}")
+                                    </p>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Availability</label>
+                                    @Html.LabelFor(u => u.UserProfile.Experience)
                                 </div>
                                 <div class="col-md-6">
-                                    <p>6 months</p>
+                                    <p>
+                                        @($"{Model.UserProfile.Experience}")
+                                    </p>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Your Bio</label><br />
-                                    <p>Your detail description</p>
+
+
+
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Experience</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Hourly Rate</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Total Projects</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>230</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>English Level</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Availability</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>6 months</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Your Bio</label><br />
+                                        <p>Your detail description</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
