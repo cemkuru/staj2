@@ -45,7 +45,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
 
 
                 TempData["addjobmessage"] = "Job has been added sucessfully";
-                return RedirectToAction("Add" , new { area = "Admin" });
+                return RedirectToAction("Add", "Job" , new { area = "Admin" });
 
             }
             CompanyAddViewModel model = new CompanyAddViewModel()

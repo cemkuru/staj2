@@ -79,14 +79,10 @@
 
                     </div>
                 </div>
-
-                @*<a class="btn btn-xs btn-success" asp-area="Admin" asp-controller="Job" asp-action="Add">Add a new Job</a>*@
-
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
 
-                            <th>Departman </th>
                             <th>Çalışma Şekli</th>
                             <th>Pozisyon </th>
                             <th>Şehir</th>
@@ -100,21 +96,15 @@
                     {
                         <tbody>
                             <tr>
-                                <td>@Model.Company.CompanyName</td>
+                                
                                 <td>@job.Department</td>
                                 <td>@job.WorkType</td>
                                 <td>@job.Position</td>
-                                @*<td>@job.City</td>*@
                                 <td>@Html.DisplayFor(modelItem => job.Date)</td>
 
                                 <td><a class="btn btn-secondary" asp-action="Details" asp-route-id="@job.JobID" role="button">İncele &raquo;</a></td>
 
-                                @*<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>*@
-
-
-                                @*<td><a class="btn btn-xs btn-info" asp-area="Admin" asp-controller="Job" asp-action="Update" asp-route-JobID="@job.JobID">Update</a></td>
-        <td><a class="btn btn-xs btn-danger" asp-area="Admin" asp-controller="Job" asp-action="Delete" asp-route-JobID="@job.JobID">Delete</a></td>*@
-                            </tr>
+                              </tr>
                         </tbody>
                     }
                 </table>

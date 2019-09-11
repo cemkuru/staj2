@@ -38,7 +38,7 @@ namespace Abis.Mbs.Entities.Concrete
         [Required]
         public int CompanyID { get; set; }
 
-        //public Company Company { get; set; }
+        public Company Company { get; set; }
 
 
 
