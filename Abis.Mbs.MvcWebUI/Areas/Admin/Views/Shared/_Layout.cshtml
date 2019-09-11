@@ -55,10 +55,10 @@
                     <ul class="nav">
 
 
-                        <li><a asp-area="Admin" asp-controller="Admin" asp-action="Index" class="active"><i class="lnr lnr-home"></i> <span>Yönetici Paneli</span></a></li>
+                        @*<li><a asp-area="Admin" asp-controller="Admin" asp-action="Index" class="active"><i class="lnr lnr-home"></i> <span>Yönetici Paneli</span></a></li>*@
                         <li>
-                            <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-bullhorn"></i> <span>Duyuru Düzenle</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="subPages" class="collapse ">
+                            <a href="#submenu-1" data-toggle="collapse" class="collapsed"><i class="lnr lnr-bullhorn"></i> <span>Duyuru Düzenle</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                            <div id="submenu-1" class="collapse ">
                                 <ul class="nav">
                                     <li><a href="@Url.Action("Add","Announcement")" class="">Duyuru Ekle</a></li>
                                     <li><a href="@Url.Action("Index","Announcement")" class="">Duyuru Sil/Düzenle</a></li>
@@ -67,8 +67,8 @@
                             </div>
                         </li>
                         <li>
-                            <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-spell-check"></i> <span>Meslek Düzenle</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="subPages" class="collapse ">
+                            <a href="#submenu-2" data-toggle="collapse" class="collapsed"><i class="lnr lnr-spell-check"></i> <span>Meslek Düzenle</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                            <div id="submenu-2" class="collapse ">
                                 <ul class="nav">
                                     <li><a href="@Url.Action("Add","Job")" class="">Meslek Ekle</a></li>
                                     <li><a href="@Url.Action("Index","Job")" class="">Meslek Sil/Düzenle</a></li>
@@ -77,8 +77,8 @@
                             </div>
                         </li>
                         <li>
-                            <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-user"></i> <span>Kullanıcı Düzenle</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="subPages" class="collapse ">
+                            <a href="#submenu-3" data-toggle="collapse" class="collapsed"><i class="lnr lnr-user"></i> <span>Kullanıcı Düzenle</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                            <div id="submenu-3" class="collapse ">
                                 <ul class="nav">
                                     <li><a href="@Url.Action("Add","Registration")" class="">Kullanıcı Ekle</a></li>
                                     <li><a href="@Url.Action("Index","Registration")" class="">Kullanıcı Sil/Düzenle</a></li>
@@ -86,7 +86,17 @@
                                 </ul>
                             </div>
                         </li>
-                       
+                        <li>
+                            <a href="#submenu-4" data-toggle="collapse" class="collapsed"><i class="lnr lnr-user"></i> <span>İstatistik Düzenle</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                            <div id="submenu-4" class="collapse ">
+                                <ul class="nav">
+                                    <li><a href="@Url.Action("Add","Department")" class="">Bölüm Ekle</a></li>
+                                    <li><a href="@Url.Action("Index","Department")" class="">Bölüm Sil/Düzenle</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+
                     </ul>
                 </nav>
             </div>

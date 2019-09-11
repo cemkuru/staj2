@@ -1,9 +1,4 @@
 ﻿@model Abis.Mbs.MvcWebUI.Models.AnnouncementListViewModel
-
-
-
-
-
 @{
 
     Layout = null;
@@ -154,7 +149,7 @@
 
     <header>
         <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color:white">
-            <a class="navbar-brand" asp-controller="HomePage" asp-action="Index"><img src="~/İmg/999999.jpg" style="height:60px; margin:5px 5px 5px 0;" />Mezun Bilgi Sistemi</a>
+            <a class="navbar-brand" asp-controller="HomePage" asp-action="Index"><img src="~/İmg/999999.jpg" style="height:50px; margin:5px 5px 5px 0;" />Mezun Bilgi Sistemi</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -305,21 +300,21 @@
                     <div class="clearfix">
                         <h2 class="title">Duyurular</h2>
                     </div>
-                    @foreach (var announcement in Model.Announcements)
+                    @foreach (var announcement in Model.Announcements.OrderByDescending(announcement=>announcement.ACreateDate))
                     {
                         <div class="row" style="width:470px; padding-top:20px;">
                             <img class="rounded-circle" src="~/İmg/999999.jpg" alt="Generic placeholder image" width="120" height="120">
                             <div style="float:right; width:345px;">
                                 <span class="date">@Html.DisplayFor(modelItem => announcement.ACreateDate)</span>
-                                <h5>@announcement.ATitle</h5>
-                                <p>@announcement.ADescription</p>
-                                <p><a class="btn btn-secondary" asp-action="Details" asp-route-id="@announcement.AnnouncementId" role="button">İncele &raquo;</a></p>
+                                <h5><a asp-action="Details" asp-route-id="@announcement.AnnouncementId" style="color:black">@announcement.ATitle</a></h5>
+                                <p><a asp-action="Details" asp-route-id="@announcement.AnnouncementId" style="color:black">@announcement.ADescription</a></p>
+                                @*<p><a class="btn btn-secondary" asp-action="Details" asp-route-id="@announcement.AnnouncementId" role="button">İncele &raquo;</a></p>*@
                             </div>
 
                         </div>
                     }
                     <div class="btn-wrap clearfix">
-                        <a class="btn btn-lg btn-dark" asp-area="User" asp-controller="Announcement" asp-action="Index" role="button" style="margin-left:160px; margin-top:20px;">Tüm Duyurular</a>
+                        <a class="btn btn-lg btn-dark" asp-area="User" asp-controller="Announcement" asp-action="Index" role="button" style="margin-left:230px; margin-top:20px;">Tüm Duyurular</a>
 
 
                     </div>

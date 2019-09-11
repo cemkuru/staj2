@@ -1,0 +1,43 @@
+﻿@using System.Threading.Tasks
+@using Abis.Mbs.MvcWebUI.Models
+@model Abis.Mbs.MvcWebUI.Areas.Admin.Models.DepartmentAddModel
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <div class="container-fluid">
+        <!-- OVERVIEW -->
+        <div class="panel panel-headline">
+            <div class="panel-heading">
+                <h3 class="panel-title">Bölüm Ekle-> Admin Panel </h3>
+
+            </div>
+            <div class="panel-body">
+                <form asp-controller="Department" asp-area="Admin" asp-action="Add" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Department.DepartmentName">Department</label>
+                        <input asp-for="Department.DepartmentName" class="form-control" placeholder="Department" />
+                        <span asp-validation-for="Department.DepartmentName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Department.Amount">Amount</label>
+                        <input asp-for="Department.Amount" class="form-control" placeholder="Amount" />
+                        <span asp-validation-for="Department.Amount"></span>
+                    </div>
+                   
+
+
+                    <input type="submit" value="Add" class="btn btn-xs btn-success" />
+
+                </form>
+            </div>
+        </div>
+        <!-- END OVERVIEW -->
+
+    </div>
+</div>
