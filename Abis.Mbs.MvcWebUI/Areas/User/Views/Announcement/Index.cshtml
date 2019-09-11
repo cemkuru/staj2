@@ -18,8 +18,8 @@
             <div class="col-lg-3" style="padding-left:55px;">
                 <img class="rounded-circle" src="~/İmg/999999.jpg" alt="Generic placeholder image" width="140" height="140">
                 <p class="date">@Html.DisplayFor(modelItem => announcement.ACreateDate)</p>
-                <h5><a asp-action="Details" asp-route-id="@announcement.AnnouncementId" style="color:black">@announcement.ATitle</a></h5>
-                <p><a asp-action="Details" asp-route-id="@announcement.AnnouncementId" style="color:black">@announcement.ADescription</a></p>
+                <h5><a asp-controller="HomePage" asp-area="" asp-action="Details" asp-route-id="@announcement.AnnouncementId" style="color:black">@announcement.ATitle</a></h5>
+                <p><a asp-controller="HomePage" asp-action="Details" asp-area="" asp-route-id="@announcement.AnnouncementId" style="color:black">@announcement.ADescription</a></p>
                 @*<p><a class="btn btn-secondary" asp-controller="HomePage" asp-area="" asp-action="Details" asp-route-id="@announcement.AnnouncementId" role="button">İncele &raquo;</a></p>*@
 
             </div>
