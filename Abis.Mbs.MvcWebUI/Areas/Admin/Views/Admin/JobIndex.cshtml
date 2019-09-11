@@ -32,7 +32,7 @@
                         <td>@job.Department</td>
                         <td>@job.WorkType</td>
                         <td>@job.Position</td>
-                        <td>@job.City</td>
+                        <td>@Model.Company.City</td>
                         <td><a class="btn btn-xs btn-success" asp-area="Admin" asp-controller="Admin" asp-action="UpdateJob" asp-route-JobID="@job.JobID">Update</a></td>
                         <td><a class="btn btn-xs btn-danger" asp-area="Admin" asp-controller="Admin" asp-action="DeleteJob" asp-route-JobID="@job.JobID">Delete</a></td>
                     </tr>

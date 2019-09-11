@@ -26,6 +26,7 @@ namespace Abis.Mbs.DataAccess.Concrete.EntityFramework
         public DbSet<Department> Departments { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
 
 

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Abis.Core.DataAccess.EntityFramework;
 using Abis.Mbs.Business.Abstract;
 using Abis.Mbs.MvcWebUI.Areas.User.Models;
 using Abis.Mbs.MvcWebUI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
 {
@@ -16,28 +18,30 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
     public class JobController : Controller
     {
         private IJobService _jobService;
-        public JobController(IJobService jobService)
+        private ICompanyService _companyService;
+        public JobController(IJobService jobService, ICompanyService companyService)
         {
             _jobService = jobService;
+            _companyService = companyService;
         }
 
         public ActionResult Index( string searchString)
         {
-            // Use LINQ to get list of genres.
+            var jobs =  _jobService.GetAll();
+            var companies = _companyService.GetAll();
 
-
-            var jobList = new JobListViewModel();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-
-                jobList.Jobs.AddRange(_jobService.GetAll().Where(w => w.Position.ToLower().Contains(searchString.ToLower())));
-            }
-            else
-            {
-                jobList.Jobs.AddRange(_jobService.GetAll());
+                jobs = jobs.Where(w => w.Position.ToLower().Contains(searchString.ToLower())).ToList(); 
             }
 
+            var jobList = new JobListViewModel()
+            { 
+                 Jobs = jobs,
+
+            };
+            
             return View(jobList);
         }
 
@@ -46,9 +50,12 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
         public ActionResult Details(int id)
         {
             var jobs = _jobService.GetById(id);
+            var companies = _companyService.GetById(jobs.CompanyID);
             JobViewModel model = new JobViewModel
             {
-                Job = jobs
+                Job = jobs,
+                Company = companies
+                
             };
             return View(model);
         }

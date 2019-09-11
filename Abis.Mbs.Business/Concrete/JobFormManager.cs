@@ -37,6 +37,11 @@ namespace Abis.Mbs.Business.Concrete
 
         }
 
+        public JobForm GetJobById(string Id)
+        {
+            return _jobformDal.Get(p => p.UserId == Id);
+        }
+
         public void Update(JobForm jobform)
         {
             _jobformDal.Update(jobform);

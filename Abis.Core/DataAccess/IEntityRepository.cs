@@ -12,6 +12,12 @@ namespace Abis.Core.DataAccess
 
         List<T> GetList(Expression<Func<T, bool>> filter = null);
 
+        //List<T> GetMany(Expression<Func<T, bool>> where, params string[] include);
+
+        //List<T> GetMany(params string[] include);
+
+        //List<T> GetMany(Expression<Func<T, bool>> where);
+
 
         void Add(T entity);
 

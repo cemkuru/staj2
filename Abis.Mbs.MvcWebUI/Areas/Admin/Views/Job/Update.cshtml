@@ -35,53 +35,31 @@
                         <input asp-for="Job.Position" class="form-control" placeholder="Country" />
                         <span asp-validation-for="Job.Position"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Job.City"></label>
-                        <input asp-for="Job.City" class="form-control" placeholder="City" />
-                        <span asp-validation-for="Job.City"></span>
-                    </div>
+
                     <div class="form-group">
                         <label asp-for="Job.Date" class="control-label"></label>
                         <input asp-for="Job.Date" class="form-control" />
                         <span asp-validation-for="Job.Date" class="text-danger"></span>
                     </div>
+
                     <div class="form-group">
                         <label asp-for="Job.Education"></label>
                         <input asp-for="Job.Education" class="form-control" placeholder="City" />
                         <span asp-validation-for="Job.Education"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Job.Description"></label>
-                        <input asp-for="Job.Description" class="form-control" placeholder="City" />
-                        <span asp-validation-for="Job.Description"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Job.Company"></label>
-                        <input asp-for="Job.Company" class="form-control" placeholder="City" />
-                        <span asp-validation-for="Job.Company"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Job.Telephone"></label>
-                        <input asp-for="Job.Telephone" class="form-control" placeholder="City" />
-                        <span asp-validation-for="Job.Telephone"></span>
-                    </div>
 
-                    <div class="form-group">
-                        <label asp-for="Job.Address"></label>
-                        <input asp-for="Job.Address" class="form-control" placeholder="City" />
-                        <span asp-validation-for="Job.Address"></span>
-                    </div>
                     <div class="form-group">
                         <label asp-for="Job.Experience"></label>
                         <input asp-for="Job.Experience" class="form-control" placeholder="City" />
                         <span asp-validation-for="Job.Experience"></span>
                     </div>
+
                     <div class="form-group">
                         <label asp-for="Job.EducationLevel"></label>
                         <input asp-for="Job.EducationLevel" class="form-control" placeholder="City" />
                         <span asp-validation-for="Job.EducationLevel"></span>
                     </div>
-
+                  
                     <input type="hidden" asp-for="Job.JobID" />
                     <input type="submit" value="Update" class="btn btn-xs btn-success" />
 

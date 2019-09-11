@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
 {
@@ -17,28 +18,35 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
     {
         
         private IJobService _jobService;
+        private ICompanyService _companyService;
 
-        public JobController(IJobService jobService)
+        public JobController(IJobService jobService, ICompanyService companyService)
         {
             _jobService = jobService;
+            _companyService = companyService;
+
         }
 
         public ActionResult Index()
         {
+
             var jobListViewModel = new JobListViewModel
             {
                 Jobs = _jobService.GetAll()
             };
             return View(jobListViewModel);
         }
-     
 
 
         public ActionResult Add()
         {
+            var jobs = _jobService.GetAll();
+            var companies = _companyService.GetAll();
             var model = new JobAddViewModel
             {
+                Companies = companies, 
                 Job = new Job(),
+
             };
             return View(model);
         }
@@ -48,19 +56,33 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 _jobService.Add(job);
+                
 
                 TempData["addjobmessage"] = "Job has been added sucessfully";
+                return RedirectToAction("Index", new { area = "Admin" });
+
             }
-            return RedirectToAction("Index", new { area = "Admin" });
+            JobAddViewModel model = new JobAddViewModel()
+            {
+                Job = job,
+                Companies = _companyService.GetAll()
+
+            };
+
+            return View(model);
         }
 
 
         public ActionResult Update(int JobId)
         {
+
+
             var model = new JobUpdateViewModel
             {
                 Job = _jobService.GetById(JobId),
+                
             };
             return View(model);
         }

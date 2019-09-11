@@ -8,7 +8,6 @@
 
 <div class="main-content">
     <div class="container-fluid">
-        <!-- OVERVIEW -->
         <div class="panel panel-headline">
             <div class="panel-heading">
                 <h3 class="panel-title">Meslek Listesi-> Admin Panel </h3>
@@ -32,41 +31,31 @@
                         <input asp-for="Job.Position" class="form-control" placeholder="Country" />
                         <span asp-validation-for="Job.Position"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Job.City"></label>
-                        <input asp-for="Job.City" class="form-control" placeholder="City" />
-                        <span asp-validation-for="Job.City"></span>
-                    </div>
+
                     <div class="form-group">
                         <label asp-for="Job.Date" class="control-label">Date</label>
                         <input asp-for="Job.Date" class="form-control" />
                         <span asp-validation-for="Job.Date" class="text-danger"></span>
                     </div>
+
                     <div class="form-group">
                         <label asp-for="Job.Education"></label>
-                        <input asp-for="Job.Education" class="form-control" placeholder="City" />
+                        <input asp-for="Job.Education" class="form-control" placeholder="Education" />
                         <span asp-validation-for="Job.Education"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Job.Description"></label>
-                        <input asp-for="Job.Description" class="form-control" placeholder="City" />
-                        <span asp-validation-for="Job.Description"></span>
+
+                    <div>
+                        <button asp-controller="Company" asp-area="Admin" asp-action="Add" class="open-button" onclick="openForm()">Open Form</button>
                     </div>
+                    
                     <div class="form-group">
-                        <label asp-for="Job.Company"></label>
-                        <input asp-for="Job.Company" class="form-control" placeholder="City" />
-                        <span asp-validation-for="Job.Company"></span>
+                        <label asp-for="Companies"></label>
+                        <select class="browser-default custom-select custom-select-lg mb-3" searchable="Search here.." asp-for="Job.CompanyID" asp-items="@(new SelectList(Model.Companies,"CompanyID","CompanyName"))">
+                            <option value="" disabled selected>Choose your department</option>
+                        </select>
+                        <span asp-validation-for="Job.CompanyID"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Job.Telephone"></label>
-                        <input asp-for="Job.Telephone" class="form-control" placeholder="City" />
-                        <span asp-validation-for="Job.Telephone"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Job.Address"></label>
-                        <input asp-for="Job.Address" class="form-control" placeholder="City" />
-                        <span asp-validation-for="Job.Address"></span>
-                    </div>
+
                     <div class="form-group">
                         <label asp-for="Job.Experience"></label>
                         <input asp-for="Job.Experience" class="form-control" placeholder="City" />
@@ -86,3 +75,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>

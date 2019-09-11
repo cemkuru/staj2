@@ -2,13 +2,11 @@
 using Abis.Mbs.Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Text;
 
 namespace Abis.Mbs.DataAccess.Abstract
 {
-    public interface IJobDal : IEntityRepository<Job>
+    public interface ICompanyDal : IEntityRepository<Company>
     {
-        //List<Job> GetMany(Expression<Func<Job, bool>> where, string[] include);
     }
 }

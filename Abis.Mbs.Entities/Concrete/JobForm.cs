@@ -11,11 +11,7 @@ namespace Abis.Mbs.Entities.Concrete
         [Key]
         public int ApplicationID { get; set; }
 
-        [Required]
-        public string Name { get; set; }
-
-        [Required]
-        public string PhoneNumber { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         public string Position { get; set; }
@@ -28,6 +24,8 @@ namespace Abis.Mbs.Entities.Concrete
 
         [Required]
         public string Resume { get; set; }
+
+
 
 
     }

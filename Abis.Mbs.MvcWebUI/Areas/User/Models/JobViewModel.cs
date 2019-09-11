@@ -9,5 +9,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Models
     public class JobViewModel
     {
         public Job Job { get; set; }
+
+        public Company Company { get; set; }
     }
 }

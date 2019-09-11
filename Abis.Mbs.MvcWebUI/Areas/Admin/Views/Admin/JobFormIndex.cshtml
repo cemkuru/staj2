@@ -25,8 +25,8 @@
         @foreach (var jobform in Model.JobForms)
             {
         <tr>
-            <td>@jobform.Name</td>
-            <td>@jobform.PhoneNumber</td>
+            <td>@Model.CustomIdentityUser.UserName</td>
+            <td>@Model.CustomIdentityUser.PhoneNumber</td>
             <td>@jobform.Position</td>
             <td>@jobform.Letter</td>
             <td>@Html.DisplayFor(modelItem => jobform.StartingDate)</td>

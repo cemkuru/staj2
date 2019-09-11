@@ -12,6 +12,8 @@ namespace Abis.Core.DataAccess.EntityFramework
         where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
     {
+        private readonly DbSet<TEntity> _dbSet;
+
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
             using (var context = new TContext())
@@ -61,7 +63,44 @@ namespace Abis.Core.DataAccess.EntityFramework
             }
         }
 
+        public IQueryable<TEntity> GetMany(Expression<Func<TEntity, bool>> where = null)
+        {
+            object result;
+            if (where != null)
+            {
+                result = _dbSet.Where(where);
+            }
+            else
+            {
+                IQueryable<TEntity> dbset = _dbSet;
+                result = dbset;
+            }
+            return (IQueryable<TEntity>)result;
+        }
 
-       
+        public IQueryable<TEntity> GetMany(Expression<Func<TEntity, bool>> where, params string[] include)
+        {
+            IQueryable<TEntity> queryable = GetMany(where);
+
+            for (int i = 0; i < include.Length; i++)
+            {
+                queryable = queryable.Include(include[i]);
+            }
+
+            return queryable;
+        }
+
+        public IQueryable<TEntity> GetMany( params string[] includes)
+        {
+            IQueryable<TEntity> query = null;
+            foreach(var include in includes)
+            {
+                query = _dbSet.Include(include);
+
+            }
+            return query == null ? _dbSet : query;
+        }
+
+        
     }
 }

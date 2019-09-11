@@ -145,10 +145,11 @@
                     {
                         <tbody>
                             <tr>
+                                <td>@Model.Company.CompanyName</td>
                                 <td>@job.Department</td>
                                 <td>@job.WorkType</td>
                                 <td>@job.Position</td>
-                                <td>@job.City</td>
+                                @*<td>@job.City</td>*@
                                 <td>@Html.DisplayFor(modelItem => job.Date)</td>
 
                                 <td><a class="btn btn-secondary" asp-action="Details" asp-route-id="@job.JobID" role="button">İncele &raquo;</a></td>

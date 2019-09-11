@@ -1,0 +1,49 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.Admin.Models.CompanyUpdateViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="main-content">
+    <div class="container-fluid">
+        <!-- OVERVIEW -->
+        <div class="panel panel-headline">
+            <div class="panel-heading">
+                <h3 class="panel-title">Is Düzenle-> Admin Panel </h3>
+
+            </div>
+            <div class="panel-body">
+                <form asp-controller="Company" asp-area="Admin" asp-action="Update" method="post">
+                    <div class="form-group">
+                        <label asp-for="Company.CompanyName"></label>
+                        <input asp-for="Company.CompanyName" class="form-control" placeholder="Company Name" />
+                        <span asp-validation-for="Company.CompanyName"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Company.City"></label>
+                        <input asp-for="Company.City" class="form-control" placeholder="City" />
+                        <span asp-validation-for="Company.City"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Company.Adress" class="control-label"></label>
+                        <input asp-for="Company.Adress" class="form-control" />
+                        <span asp-validation-for="Company.Adress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Company.Phone" class="control-label"></label>
+                        <input asp-for="Company.Phone" class="form-control" />
+                        <span asp-validation-for="Company.Phone" class="text-danger"></span>
+                    </div>
+
+                    <input type="hidden" asp-for="Company.CompanyID" />
+                    <input type="submit" value="Update" class="btn btn-xs btn-success" />
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

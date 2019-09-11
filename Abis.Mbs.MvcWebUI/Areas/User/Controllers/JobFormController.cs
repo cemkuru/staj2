@@ -6,8 +6,10 @@ using Abis.Mbs.Business.Abstract;
 using Abis.Mbs.Entities.Concrete;
 using Abis.Mbs.MvcWebUI.Areas.Admin.Models;
 using Abis.Mbs.MvcWebUI.Areas.User.Models;
+using Abis.Mbs.MvcWebUI.Entities;
 using Abis.Mbs.MvcWebUI.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
@@ -17,21 +19,29 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
 
     public class JobFormController : Controller
     {
+        private readonly UserManager<CustomIdentityUser> _userManager;
+
         private IJobFormService _jobformService;
 
-        public JobFormController(IJobFormService jobformService)
+
+
+        public JobFormController(IJobFormService jobformService, UserManager<CustomIdentityUser> userManager)
         {
             _jobformService = jobformService;
+            _userManager = userManager;
         }
 
 
         public ActionResult JobFormIndex()
         {
+            string username = User.Identity.Name;
+            CustomIdentityUser user = _userManager.FindByNameAsync(username).Result;
 
             var jobforms = _jobformService.GetAll();
             JobFormListViewModel model = new JobFormListViewModel
             {
-                JobForms = jobforms
+                JobForms = jobforms,
+                CustomIdentityUser = user
             };
             return View(model);
         }

@@ -157,7 +157,7 @@
                                             <h4>   @Html.DisplayFor(model => model.Job.Position) </h4>
                                         </div>
                                     </div>
-                                    <div class="row" style="padding-bottom:7px;">
+                                    @*<div class="row" style="padding-bottom:7px;">
                                         <div class="col-xs-4">
                                             <h4>
                                                 <strong>
@@ -168,7 +168,7 @@
                                         <div class="col-xs-12" style="padding-left:13px;">
                                             <h4>   @Html.DisplayFor(model => model.Job.City) </h4>
                                         </div>
-                                    </div>
+                                    </div>*@
 
                                 </div>
 
@@ -194,7 +194,7 @@
                                             </h4>
                                         </div>
                                         <div class="col-xs-12" style="padding-left:13px;">
-                                            <h4>  @Html.DisplayFor(model => model.Job.Company) </h4>
+                                            <h4>  @Html.DisplayFor(model => model.Company.CompanyName) </h4>
                                         </div>
                                     </div>
                                     <div class="row" style="padding-bottom:7px;">
@@ -206,19 +206,19 @@
                                             </h4>
                                         </div>
                                         <div class="col-xs-12" style="padding-left:13px;">
-                                            <h4>   @Html.DisplayFor(model => model.Job.Telephone) </h4>
+                                            <h4>   @Html.DisplayFor(model => model.Company.Phone) </h4>
                                         </div>
                                     </div>
                                     <div class="row" style="padding-bottom:7px;">
                                         <div class="col-xs-4">
-                                            <h4>
+                                            <h4> 
                                                 <strong>
                                                     Adres:
                                                 </strong>
                                             </h4>
                                         </div>
                                         <div class="col-xs-12" style="padding-left:13px;">
-                                            <h4>   @Html.DisplayFor(model => model.Job.Address) </h4>
+                                            <h4> @Html.DisplayFor(model => model.Company.Adress) </h4>
                                         </div>
                                     </div>
                                     <div class="row" style="padding-bottom:7px;">
@@ -230,7 +230,7 @@
                                             </h4>
                                         </div>
                                         <div class="col-xs-12" style="padding-left:13px;">
-                                            <h4>   @Html.DisplayFor(model => model.Job.City) </h4>
+                                            <h4>   @Html.DisplayFor(model => model.Company.City) </h4>
                                         </div>
                                     </div>
                                     <div class="row" style="padding-bottom:7px;">
@@ -266,17 +266,10 @@
                                             <h4>  @Html.DisplayFor(model => model.Job.Description) </h4>
                                         </div>
                                     </div>
-
-
-
-
                                 </div>
 
                             </div>
-
                         </div>
-
-
                     </div>
                     <div>
                         <a class="btn btn-lg btn-success" style="margin-left:361px;" asp-area="User" asp-controller="JobForm" asp-action="AddJobForm">Başvur</a>

@@ -31,6 +31,10 @@ namespace Abis.Mbs.MvcWebUI
             services.AddScoped<IJobService, JobManager>();
             services.AddScoped<IJobDal, EfJobDal>();
 
+            //Company Service and DAL
+            services.AddScoped<ICompanyService, CompanyManager>();
+            services.AddScoped<ICompanyDal, EfCompanyDal>();
+
             //Language Service and DAL
             services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ILanguageDal, EfLanguageDal>();

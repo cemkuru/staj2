@@ -19,8 +19,6 @@ namespace Abis.Mbs.Entities.Concrete
         [Required]
         public string Position { get; set; }
 
-        [Required]
-        public string City { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime? Date { get; set; }
@@ -32,19 +30,15 @@ namespace Abis.Mbs.Entities.Concrete
         public string Description { get; set; }
 
         [Required]
-        public string Company { get; set; }
-
-        [Required]
-        public long Telephone { get; set; }
-
-        [Required]
-        public string Address { get; set; }
-
-        [Required]
         public string Experience { get; set; }
 
         [Required]
         public string EducationLevel { get; set; }
+
+        [Required]
+        public int CompanyID { get; set; }
+
+        //public Company Company { get; set; }
 
 
 
