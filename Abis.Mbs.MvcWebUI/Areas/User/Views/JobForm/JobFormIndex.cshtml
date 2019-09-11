@@ -14,8 +14,8 @@
     <div>
         <table class="table table-responsive">
             <tr>
-                <td>Name</td>
-                <td>PhoneNumber</td>
+                @*<td>Name</td>
+                <td>PhoneNumber</td>*@
                 <td>Position</td>
                 <td>Letter</td>
                 <td>Starting Date</td>
@@ -26,8 +26,8 @@
             @foreach (var jobform in Model.JobForms)
             {
                 <tr>
-                    <td>@jobform.Name</td>
-                    <td>@jobform.PhoneNumber</td>
+                    @*<td>@jobform.Name</td>
+                    <td>@jobform.PhoneNumber</td>*@
                     <td>@jobform.Position</td>
                     <td>@jobform.Letter</td>
                     <td>@Html.DisplayFor(modelItem => jobform.StartingDate)</td>

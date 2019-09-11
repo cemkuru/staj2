@@ -11,11 +11,11 @@ namespace Abis.Mbs.Entities.Concrete
         [Key]
         public int ApplicationID { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        //[Required]
+        //public string Name { get; set; }
 
-        [Required]
-        public string PhoneNumber { get; set; }
+        //[Required]
+        //public string PhoneNumber { get; set; }
 
         [Required]
         public string Position { get; set; }

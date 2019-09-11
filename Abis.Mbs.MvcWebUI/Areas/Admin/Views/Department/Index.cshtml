@@ -1,0 +1,174 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.Admin.Models.DepartmentListModel
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+
+    $(document).ready(function () {
+        //Load Data Here
+        var chartData = null;
+        $.ajax({
+            url: '/Department/GetChartData',
+            type: 'GET',
+            dataType: 'json',
+            data: '',
+            success: function (d) {
+                chartData = d;
+            },
+            error: function () {
+                alert('Error!');
+            }
+        }).done(function () {
+            drawPieChart(chartData);
+        });
+    });
+    function drawPieChart(chartData) {
+        var data = google.visualization.arrayToDataTable(chartData);
+        var options = {
+            title: "Category",
+            pointSize: 5,
+            is3D: true
+        };
+        var pieChart = new google.visualization.PieChart(document.getElementById('divPieChart'));
+        pieChart.draw(data, options);
+    }
+    google.load('visualization', '1', { packages: ['corechart'] });
+</script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+    $(document).ready(function () {
+        //Load Data Here
+        var chartData = null;
+        $.ajax({
+            url: '/Department/GetChartData',
+            type: 'GET',
+            dataType: 'json',
+            data: '',
+            success: function (d) {
+                chartData = d;
+            },
+            error: function () {
+                alert('Error!');
+            }
+        }).done(function () {
+            drawColumnChart(chartData);
+        });
+    });
+    function drawColumnChart(d) {
+        var chartData = d;
+        var data = null;
+        data = google.visualization.arrayToDataTable(chartData);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, {
+            type: 'number',
+            label: data.getColumnLabel(0),
+            calc: function () { return 0; }
+        }
+        ]);
+        var chart = new google.visualization.ColumnChart($('#divColumnChart')[0]); //returns a HTML DOM Object
+        var options = {
+            title: '',
+            legend: 'bottom',
+            colors: ['blue', '#009900'],
+            hAxis: {
+                title: 'Bölüm',
+                format: '#'
+            },
+            vAxis: {
+                minValue: 0,
+                maxValue: 100000,
+                title: 'Mezun Sayısı'
+            },
+            chartArea: {
+                left: 100, top: 50, width: '70%', height: '50%'
+            },
+            animation: {
+                duration: 1000
+            },
+        };
+        var runFirstTime = google.visualization.events.addListener(chart, 'ready', function () {
+            google.visualization.events.removeListener(runFirstTime);
+            chart.draw(data, options);
+        });
+        chart.draw(view, options);
+    }
+    google.load('visualization', '1', { packages: ['corechart'] });
+</script>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <div class="container-fluid">
+        <!-- OVERVIEW -->
+        <div class="panel panel-headline">
+            <div class="panel-heading">
+                <h3 class="panel-title">Bölüm Listesi-> Admin Panel </h3>
+
+            </div>
+            <div class="panel-body">
+
+
+                <div class="container">
+
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-12"><h2>Bölüm Listesi</h2></div>
+
+                        </div>
+                    </div>
+
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+
+                                <th>Department Name</th>
+                                <th>Amount</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @foreach (var departments in Model.Departments)
+                            {
+
+                                <tr>
+                                    <td>@departments.DepartmentName</td>
+                                    <td>@departments.Amount</td>
+
+                                    <td>
+                                        <a class="edit" asp-area="Admin" asp-controller="Department" asp-action="Update" asp-route-DepId="@departments.DepId" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                        <a class="delete" asp-area="Admin" asp-controller="Department" asp-action="Delete" asp-route-DepId="@departments.DepId" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                    <!-- END OVERVIEW -->
+
+                   
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-12" id="divPieChart" style="width:550px; height:300px">
+                        </div>
+                        <div class="col-xs-12" id="divColumnChart" style="width:550px; height:300px">
+                        </div>
+                    </div>
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
