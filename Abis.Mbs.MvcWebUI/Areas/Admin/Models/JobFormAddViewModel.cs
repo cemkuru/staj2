@@ -17,5 +17,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Models
 
         public List<Job> Jobs { get; set; }
 
+        public List<Company> Companies { get; set; }
+
     }
 }

@@ -15,7 +15,7 @@ namespace Abis.Mbs.DataAccess.Concrete.EntityFramework
         {
             using (var context = new MbsContext())
             {
-                return context.Set<JobForm>().Include(x => x.Job).ToList();
+                return context.Set<JobForm>().Include(x => x.Job).Include(x => x.Company).ToList();
             }
         }
     }

@@ -51,6 +51,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
             var model = new JobFormAddViewModel
             {
                 JobForm = new JobForm(),
+                Job = new Job()
             };
             return View(model);
         }
