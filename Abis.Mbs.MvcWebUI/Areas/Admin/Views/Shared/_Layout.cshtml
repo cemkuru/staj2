@@ -29,9 +29,9 @@
                                 <ul class="dropdown-menu">
 
                                     <li><a href="#"><span>@await Component.InvokeAsync("UserSummary")</span></a></li>
-                                    <li><a href="#"><i class="lnr lnr-user"></i> <span>Profilim</span></a></li>
+                                    @*<li><a href="#"><i class="lnr lnr-user"></i> <span>Profilim</span></a></li>
                                     <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Mesajlar</span></a></li>
-                                    <li><a href="#"><i class="lnr lnr-cog"></i> <span>Ayarlar</span></a></li>
+                                    <li><a href="#"><i class="lnr lnr-cog"></i> <span>Ayarlar</span></a></li>*@
                                     <li>
                                         <a href="@Url.Action("LogOff","Account",new { area="" })"><i class="lnr lnr-exit"></i> <span>Çıkış</span></a>
                                     </li>
@@ -85,7 +85,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="#submenu-4" data-toggle="collapse" class="collapsed"><i class="lnr lnr-user"></i> <span>İstatistik Düzenle</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                            <a href="#submenu-4" data-toggle="collapse" class="collapsed"><i class="fa fa-bar-chart-o"></i> <span>İstatistik Düzenle</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                             <div id="submenu-4" class="collapse ">
                                 <ul class="nav">
                                     <li><a href="@Url.Action("Add","Department")" class="">Bölüm Ekle</a></li>
@@ -144,7 +144,7 @@
 
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <script src="~/js/jquery/jquery.js"></script>
+    @*<script src="~/js/jquery/jquery.js"></script>*@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/lib/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
