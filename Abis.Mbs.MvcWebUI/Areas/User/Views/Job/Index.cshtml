@@ -45,6 +45,12 @@
                     {
                         @if (User.IsInRole("User"))
                         {
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="User" asp-controller="Job" asp-action="Index">Kariyer<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="User" asp-controller="UserProfile" asp-action="Details">Profile<span class="sr-only">(current)</span></a>
+                            </li>
 
                         }
 
@@ -63,6 +69,13 @@
 
 
                 </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="@Url.Action("LogOff","Account")"><i class="lnr lnr-exit"></i> <span>Çıkış Yap</span></a></li>
+
+                    </ul>
+                }
 
             </div>
         </nav>
@@ -85,11 +98,10 @@
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
-
+                            <th>Firma </th>
                             <th>Departman </th>
                             <th>Çalışma Şekli</th>
                             <th>Pozisyon </th>
-                            <th>Şehir</th>
                             <th>İlan Tarihi</th>
 
                         </tr>
@@ -100,11 +112,10 @@
                     {
                         <tbody>
                             <tr>
-                                <td>@Model.Company.CompanyName</td>
+                                <td>@Html.DisplayFor(modelItem=>job.Company)</td>
                                 <td>@job.Department</td>
                                 <td>@job.WorkType</td>
                                 <td>@job.Position</td>
-                                @*<td>@job.City</td>*@
                                 <td>@Html.DisplayFor(modelItem => job.Date)</td>
 
                                 <td><a class="btn btn-secondary" asp-action="Details" asp-route-id="@job.JobID" role="button">İncele &raquo;</a></td>
