@@ -23,7 +23,7 @@ namespace Abis.Mbs.Business.Concrete
 
         public void Delete(int Id)
         {
-            _jobformDal.Delete(new JobForm { ApplicationID = Id });
+            _jobformDal.Delete(new JobForm { ID = Id });
         }
 
         public List<JobForm> GetAll()
@@ -31,9 +31,14 @@ namespace Abis.Mbs.Business.Concrete
             return _jobformDal.GetList();
         }
 
+        public List<JobForm> GetAllWithIncludeJob()
+        {
+            return _jobformDal.GetAllWithIncludeJob();
+        }
+
         public JobForm GetById(int Id)
         {
-            return _jobformDal.Get(p => p.ApplicationID == Id);
+            return _jobformDal.Get(p => p.ID == Id);
 
         }
 

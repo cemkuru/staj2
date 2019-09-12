@@ -9,21 +9,17 @@ namespace Abis.Mbs.Entities.Concrete
     public class JobForm: IEntity
     {
         [Key]
-        public int ApplicationID { get; set; }
+        public int ID { get; set; }
 
         public string UserId { get; set; }
 
-        [Required]
-        public string Position { get; set; }
+        public int  JobID { get; set; }
 
-        [Required]
-        public DateTime? StartingDate { get; set; }
+        public int CompanyID { get; set; }
 
-        [Required]
-        public string Letter { get; set; }
+        public Company Company { get; set; }
 
-        [Required]
-        public string Resume { get; set; }
+        public Job Job { get; set; }
 
 
 

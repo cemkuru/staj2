@@ -13,5 +13,6 @@ namespace Abis.Mbs.Business.Abstract
         void Update(JobForm jobform);
         void Delete(int Id);
         JobForm GetById(int Id);
+        List<JobForm> GetAllWithIncludeJob();
     }
 }

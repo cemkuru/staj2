@@ -37,7 +37,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
             string username = User.Identity.Name;
             CustomIdentityUser user = _userManager.FindByNameAsync(username).Result;
 
-            var jobforms = _jobformService.GetAll();
+            var jobforms = _jobformService.GetAllWithIncludeJob();
             JobFormListViewModel model = new JobFormListViewModel
             {
                 JobForms = jobforms,

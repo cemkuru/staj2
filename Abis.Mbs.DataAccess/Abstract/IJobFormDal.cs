@@ -9,5 +9,6 @@ namespace Abis.Mbs.DataAccess.Abstract
 {
     public interface IJobFormDal : IEntityRepository<JobForm>
     {
+        List<JobForm> GetAllWithIncludeJob();
     }
 }

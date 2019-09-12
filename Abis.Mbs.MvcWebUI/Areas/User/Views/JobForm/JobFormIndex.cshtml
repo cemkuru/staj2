@@ -14,11 +14,10 @@
     <div>
         <table class="table table-responsive">
             <tr>
-                <td>Name</td>
-                <td>PhoneNumber</td>
+                <td>Department</td>
+                <td>Company Name</td>
                 <td>Position</td>
-                <td>Letter</td>
-                <td>Starting Date</td>
+                
 
                 <td></td>
                 <td></td>
@@ -26,12 +25,11 @@
             @foreach (var jobform in Model.JobForms)
             {
                 <tr>
-                    <td>@Model.CustomIdentityUser.UserName</td>
-                    <td>@Model.CustomIdentityUser.PhoneNumber</td>
-                    <td>@jobform.Position</td>
-                    <td>@jobform.Letter</td>
-                    <td>@Html.DisplayFor(modelItem => jobform.StartingDate)</td>
-
+                    <td>@jobform.Job.Department</td>
+                    @*<td>@jobform.Company.CompanyName</td>*@
+                    <td>@jobform.Job.Position</td>
+                    
+                  
 
 
                 </tr>
