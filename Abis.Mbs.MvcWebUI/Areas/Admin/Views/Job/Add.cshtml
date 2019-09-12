@@ -44,10 +44,12 @@
                         <span asp-validation-for="Job.Education"></span>
                     </div>
 
-                    <div>
-                        <button asp-controller="Company" asp-area="Admin" asp-action="Add" class="open-button" onclick="openForm()">Open Form</button>
+                    <div class="text-center" >
+                        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">
+                            Add Company
+                        </a>
                     </div>
-                    
+
                     <div class="form-group">
                         <label asp-for="Companies"></label>
                         <select class="browser-default custom-select custom-select-lg mb-3" searchable="Search here.." asp-for="Job.CompanyID" asp-items="@(new SelectList(Model.Companies,"CompanyID","CompanyName"))">
@@ -75,13 +77,50 @@
         </div>
     </div>
 </div>
+<form asp-area="Admin" asp-controller="Company" asp-action="Add" method="post">
+    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" style="opacity:1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
 
-<script>
-    function openForm() {
-        document.getElementById("myForm").style.display = "block";
-    }
+                    <div class="md-form mb-5">
+                        <label asp-for="Company.CompanyName"></label>
+                        <input asp-for="Company.CompanyName" class="form-control" placeholder="Post " />
+                        <span asp-validation-for="Company.CompanyName"></span>
+                    </div>
 
-    function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-    }
-</script>
+                    <div class="md-form mb-4">
+                        <label asp-for="Company.City"></label>
+                        <input asp-for="Company.City" class="form-control" placeholder="City" />
+                        <span asp-validation-for="Company.City"></span>
+                    </div>
+
+                    <div class="md-form mb-3">
+                        <label asp-for="Company.Adress"></label>
+                        <input asp-for="Company.Adress" class="form-control" placeholder="Address" />
+                        <span asp-validation-for="Company.Adress"></span>
+                    </div>
+
+                    <div class="md-form mb-2">
+                        <label asp-for="Company.Phone"></label>
+                        <input asp-for="Company.Phone" class="form-control" placeholder="Phone Number" />
+                        <span asp-validation-for="Company.Phone"></span>
+                    </div>
+
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <input type="submit" value="Add" class="btn btn-xs btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
