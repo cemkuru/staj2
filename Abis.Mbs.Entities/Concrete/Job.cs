@@ -26,7 +26,7 @@ namespace Abis.Mbs.Entities.Concrete
         [Required]
         public string Education { get; set; }
 
-        [Required]
+        //[Required]
         public string Description { get; set; }
 
         [Required]

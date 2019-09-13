@@ -77,13 +77,11 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
 
         public ActionResult Update(int JobId)
         {
-
-
-            var model = new JobUpdateViewModel
-            {
-                Job = _jobService.GetById(JobId),
-                
-            };
+            Job job = _jobService.GetById(JobId);
+            JobUpdateViewModel model = new JobUpdateViewModel();
+            model.Job = job;
+            model.CompanyID = job.CompanyID;
+           
             return View(model);
         }
 
@@ -92,7 +90,8 @@ namespace Abis.Mbs.MvcWebUI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _jobService.Update(job);
+                //Job iş = _jobService.GetAll().FirstOrDefault(x=> x.CompanyID.Equals())  
+                //_jobService.Update(job);
 
                 TempData["updatejobmessage"] = "Job has been updated sucessfully";
             }
