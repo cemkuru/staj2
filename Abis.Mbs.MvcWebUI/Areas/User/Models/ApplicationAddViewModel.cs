@@ -13,6 +13,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Models
         public Application Application { get; set; }
 
         public CustomIdentityUser CustomIdentityUser { get; set; }
+        public string  DepertmentName { get; set; }
 
         public Job Job { get; set; }
     }

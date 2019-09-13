@@ -47,20 +47,20 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
             CustomIdentityUser identityUser = _userManager.FindByNameAsync(username).Result;
             UserProfile user = _userProfileService.GetAll().FirstOrDefault(x => x.UserId.Equals(identityUser.Id));
 
-            var job = _jobService.GetById(Id);
+            
             var apps = _applicationService.GetAll();
-            var a = new Application
+            foreach (var item in apps)
             {
-                JobID = job.JobID,
-                UserId = user.ID,
-                
-            };
-            _applicationService.Add(a);
+                item.Job= _jobService.GetById(item.JobID);
+            }
 
             var model = new ApplicationAddViewModel
             {
-                Applications = apps,
-                Job = new Job(),
+                Applications = apps
+                
+               
+
+                
 
             };
             return View(model);
@@ -89,7 +89,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
         public string GetUsername(string id)
         {
             var user = _userManager.FindByIdAsync(id).Result;
-            return user.UserName; 
+            return user.UserName;
             //var user = _userProfileService.GetUserProfileById(id);
         }
         public string GetJob(int id)
