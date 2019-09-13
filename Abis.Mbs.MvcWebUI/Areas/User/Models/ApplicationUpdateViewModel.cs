@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace Abis.Mbs.MvcWebUI.Areas.User.Models
 {
-    public class UserProfileEdit
+    public class ApplicationUpdateViewModel
     {
+        public Application Application { get; set; }
+
         public CustomIdentityUser CustomIdentityUser { get; set; }
 
-        public UserProfile UserProfile { get; set; }
+        public Job Job { get; set; }
+
     }
 }

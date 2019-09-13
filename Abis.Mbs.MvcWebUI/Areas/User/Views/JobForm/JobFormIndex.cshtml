@@ -14,9 +14,9 @@
     <div>
         <table class="table table-responsive">
             <tr>
-                <td>Department</td>
-                <td>Company Name</td>
-                <td>Position</td>
+                <td>Username</td>
+                <td>Job</td>
+                @*<td>Position</td>*@
                 
 
                 <td></td>
@@ -24,15 +24,16 @@
             </tr>
             @foreach (var jobform in Model.JobForms)
             {
-                <tr>
-                    <td>@jobform.Job.Department</td>
-                    <td>@jobform.Company.CompanyName</td>
-                    <td>@jobform.Job.Position</td>
-                    
-                  
+            <tr>
+       
+                <td>@Html.DisplayFor(model => jobform.UserId)</td>
+                <td>@Html.DisplayFor(model => jobform.JobID)</td>
+                <td>@Html.ActionLink("Add", "Application", new { id = jobform.ID })</td>
 
 
-                </tr>
+
+
+            </tr>
 
             }
         </table>

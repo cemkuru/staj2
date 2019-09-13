@@ -27,6 +27,9 @@ namespace Abis.Mbs.MvcWebUI
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
 
+            services.AddScoped<IApplicationService, ApplicationManager>();
+            services.AddScoped<IApplicationDal, EfApplicationDal>();
+
             // Job Service and job data acess layers
             services.AddScoped<IJobService, JobManager>();
             services.AddScoped<IJobDal, EfJobDal>();

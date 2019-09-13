@@ -276,7 +276,9 @@
 
                     </div>
                     <div>
-                        <a class="btn btn-lg btn-success" style="margin-left:361px;" asp-area="User" asp-controller="JobForm" asp-action="AddJobForm">Başvur</a>
+                        <a class="btn btn-lg btn-success" style="margin-left:361px;" asp-area="User" asp-controller="Application" asp-route-Id="@Model.Job.JobID" asp-action="Add">Başvur</a>
+                        @*<input type="hidden" asp-for="Job.JobID" />
+                        <input type="submit" value="Add" class="btn btn-xs btn-success" asp-area="User" asp-controller="Application"  asp-action="Add"/>*@
 
                     </div>
 

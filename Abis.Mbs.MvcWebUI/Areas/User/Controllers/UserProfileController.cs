@@ -92,7 +92,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
 
             ////Construct the model
             UserProfileUpdateViewModel model = new UserProfileUpdateViewModel();
-            model.UserProfile = user;
+            model.UserProfile = user;   
             model.DepId = user.DepId;
             model.LanguageID = user.LanguageID;
             model.Departments = _departmentService.GetAll();
@@ -152,29 +152,7 @@ namespace Abis.Mbs.MvcWebUI.Areas.User.Controllers
 
 
       
-        //public ActionResult Index()
-        //{
-        //    HtmlToPdfConverter converter = new HtmlToPdfConverter();
-
-        //    WebKitConverterSettings settings = new WebKitConverterSettings();
-
-        //    settings.WebKitPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/QtBinariesWindows");
-        //    converter.ConverterSettings = settings;
-
-        //    PdfDocument document = converter.Convert("https://localhost:44375/User/UserProfile/Index");
-
-        //    MemoryStream ms = new MemoryStream();
-        //    document.Save(ms);
-        //    document.Close(true);
-
-        //    ms.Position = 0;
-
-        //    FileStreamResult fileStreamResult = new FileStreamResult(ms, "application/pdf");
-
-        //    fileStreamResult.FileDownloadName = "UserProfile.pdf";
-
-        //    return fileStreamResult;
-        //}
+        
 
         // Add Profile
         public ActionResult Add()

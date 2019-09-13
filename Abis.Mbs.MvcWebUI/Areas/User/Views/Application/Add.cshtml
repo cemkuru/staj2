@@ -1,0 +1,43 @@
+﻿@model Abis.Mbs.MvcWebUI.Areas.User.Models.ApplicationAddViewModel
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<div class="wrapper">
+    <div class="inner">
+
+
+        <form class="" asp-area="User" asp-controller="Application" asp-action="Add">
+
+            <div>
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <td>User</td>
+                            <td>Job</td>
+
+
+                        </tr>
+                    </thead>
+
+                    @foreach (var app in Model.Applications)
+                    {
+                    <tr>
+
+                        <td>@Html.ActionLink("GetUsername", "Application", new { id = app.UserId })</td>
+                        <td>@Html.ActionLink("GetUsername", "Application", new { id = app.UserId })</td>
+
+
+                    </tr>
+                    }
+                </table>
+            </div>
+            <div>
+                <a class="btn btn-lg btn-success" style="margin-left:361px;" asp-area="User" asp-controller="Application" asp-action="Add">Onay</a>
+
+            </div>
+        </form>
+
+    </div>
+</div>
